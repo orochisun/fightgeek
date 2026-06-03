@@ -1,0 +1,104 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/home/index",
+        "pages/member/index",
+        "pages/me/index",
+        "pages/buy-card/index",
+        "pages/buy-card-special/index",
+        "pages/video/list/index",
+        "pages/video/detail/index",
+        "pages/coach/detail/index",
+        "pages/store/select/index",
+        "pages/store/detail/index",
+        "pages/user-info/index",
+        "pages/user-info/edit/index",
+        "pages/member-policy/index",
+        "pages/esign/list/index",
+        "pages/order/list/index",
+        "pages/order/detail/index",
+        "pages/my-card/list/index",
+        "pages/my-card/detail/index",
+        "pages/message/index",
+        "pages/booking/index",
+        "pages/booking/pt-coach/index",
+        "pages/admin-push-order/index",
+        "pages/customer-acquisition/index",
+        "pages/customer-service/list/index",
+        "pages/customer-service/select/index",
+        "pages/user/login/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#E7262A",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#f2f2f2"
+    },
+    "tabBar": {
+        "color": "#666666",
+        "selectedColor": "#E7262A",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/home/index",
+                "text": "极斗",
+                "iconPath": "assets/images/tabbar/home.png",
+                "selectedIconPath": "assets/images/tabbar/home_active.png"
+            },
+            {
+                "pagePath": "pages/video/list/index",
+                "text": "影展",
+                "iconPath": "assets/images/tabbar/video.png",
+                "selectedIconPath": "assets/images/tabbar/video_active.png"
+            },
+            {
+                "pagePath": "pages/index/index",
+                "text": "约课",
+                "iconPath": "assets/images/tabbar/schedule.png",
+                "selectedIconPath": "assets/images/tabbar/schedule_active.png"
+            },
+            {
+                "pagePath": "pages/member/index",
+                "text": "会员",
+                "iconPath": "assets/images/tabbar/member.png",
+                "selectedIconPath": "assets/images/tabbar/member_active.png"
+            },
+            {
+                "pagePath": "pages/me/index",
+                "text": "我的",
+                "iconPath": "assets/images/tabbar/me.png",
+                "selectedIconPath": "assets/images/tabbar/me_active.png"
+            }
+        ]
+    },
+    "subPackages": [
+        {
+            "root": "pages/esign/"
+        },
+        {
+            "root": "pages/order/"
+        },
+        {
+            "root": "pages/my-card/"
+        },
+        {
+            "root": "pages/message/"
+        },
+        {
+            "root": "pages/booking/"
+        },
+        {
+            "root": "pages/admin-push-order/"
+        },
+        {
+            "root": "pages/customer-acquisition/"
+        },
+        {
+            "root": "pages/customer-service/"
+        },
+        {
+            "root": "pages/user/"
+        }
+    ]
+}

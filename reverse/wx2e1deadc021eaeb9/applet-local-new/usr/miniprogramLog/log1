@@ -1,0 +1,187 @@
+
+2026-6-3 20:3:12 [log] wx.getStorage api invoke
+2026-6-3 20:3:12 [log] App onLaunch have been invoked
+2026-6-3 20:3:12 [log] App onShow have been invoked
+2026-6-3 20:3:12 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:12 [log] wx.getStorage api invoke
+2026-6-3 20:3:12 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:12 [log] wx.getSetting api invoke
+2026-6-3 20:3:12 [log] page pages/index/index onLoad have been invoked
+2026-6-3 20:3:12 [log] page pages/index/index onShow have been invoked
+2026-6-3 20:3:12 [log] page pages/index/index onRouteDone have been invoked
+2026-6-3 20:3:12 [log] page pages/index/index onReady have been invoked
+2026-6-3 20:3:12 [log] page pages/index/index onResize have been invoked
+2026-6-3 20:3:12 [log] wx.getSetting success callback with msg getSetting:ok
+2026-6-3 20:3:12 [log] wx.authorize api invoke
+2026-6-3 20:3:13 [log] wx.authorize success callback with msg authorize:ok
+2026-6-3 20:3:13 [log] wx.getFuzzyLocation api invoke
+2026-6-3 20:3:14 [log] wx.getStorage api invoke
+2026-6-3 20:3:14 [log] wx.getStorage api invoke
+2026-6-3 20:3:14 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:14 [log] wx.request api invoke
+2026-6-3 20:3:14 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:14 [log] wx.request api invoke
+2026-6-3 20:3:14 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:14 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:14 [log] wx.setStorage api invoke
+2026-6-3 20:3:14 [log] wx.setStorage api invoke
+2026-6-3 20:3:14 [log] wx.setStorage api invoke
+2026-6-3 20:3:14 [log] wx.setStorage api invoke
+2026-6-3 20:3:14 [log] wx.setStorage api invoke
+2026-6-3 20:3:14 [log] wx.getStorage api invoke
+2026-6-3 20:3:14 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:14 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:14 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:14 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:14 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:14 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:14 [log] wx.request api invoke
+2026-6-3 20:3:14 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:15 [log] page pages/index/index onHide have been invoked
+2026-6-3 20:3:15 [log] page pages/me/index onLoad have been invoked
+2026-6-3 20:3:15 [log] page pages/me/index onShow have been invoked
+2026-6-3 20:3:15 [log] page pages/me/index onRouteDone have been invoked
+2026-6-3 20:3:15 [log] page pages/me/index onReady have been invoked
+2026-6-3 20:3:15 [log] page pages/me/index onResize have been invoked
+2026-6-3 20:3:18 [log] wx.login api invoke
+2026-6-3 20:3:19 [log] wx.login success callback with msg login:ok
+2026-6-3 20:3:19 [log] wx.getStorage api invoke
+2026-6-3 20:3:19 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:19 [log] wx.request api invoke
+2026-6-3 20:3:19 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:19 [log] wx.login api invoke
+2026-6-3 20:3:20 [log] wx.login success callback with msg login:ok
+2026-6-3 20:3:20 [log] wx.getStorage api invoke
+2026-6-3 20:3:20 [log] wx.getStorage fail callback with msg getStorage:fail 
+2026-6-3 20:3:20 [log] wx.request api invoke
+2026-6-3 20:3:20 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:20 [log] wx.setStorage api invoke
+2026-6-3 20:3:20 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:20 [log] wx.setStorage api invoke
+2026-6-3 20:3:20 [log] wx.setStorage success callback with msg setStorage:ok
+2026-6-3 20:3:20 [log] wx.getStorage api invoke
+2026-6-3 20:3:20 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:20 [log] wx.getStorage api invoke
+2026-6-3 20:3:20 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:20 [log] wx.request api invoke
+2026-6-3 20:3:20 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:20 [log] wx.getAccountInfoSync api invoke
+2026-6-3 20:3:20 [log] wx.getStorage api invoke
+2026-6-3 20:3:20 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:20 [log] wx.getStorage api invoke
+2026-6-3 20:3:20 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:20 [log] wx.request api invoke
+2026-6-3 20:3:20 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:22 [log] page pages/me/index onHide have been invoked
+2026-6-3 20:3:22 [log] page pages/video/list/index onLoad have been invoked
+2026-6-3 20:3:22 [log] page pages/video/list/index onShow have been invoked
+2026-6-3 20:3:22 [log] wx.getStorage api invoke
+2026-6-3 20:3:22 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:22 [log] wx.getStorage api invoke
+2026-6-3 20:3:22 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:22 [log] wx.request api invoke
+2026-6-3 20:3:22 [log] page pages/video/list/index onRouteDone have been invoked
+2026-6-3 20:3:22 [log] page pages/video/list/index onReady have been invoked
+2026-6-3 20:3:22 [log] page pages/video/list/index onResize have been invoked
+2026-6-3 20:3:22 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:23 [log] page pages/video/list/index onHide have been invoked
+2026-6-3 20:3:23 [log] page pages/home/index onLoad have been invoked
+2026-6-3 20:3:23 [log] page pages/home/index onShow have been invoked
+2026-6-3 20:3:23 [log] wx.getStorage api invoke
+2026-6-3 20:3:23 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:23 [log] wx.getStorage api invoke
+2026-6-3 20:3:23 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:23 [log] wx.request api invoke
+2026-6-3 20:3:23 [log] page pages/home/index onRouteDone have been invoked
+2026-6-3 20:3:23 [log] page pages/home/index onReady have been invoked
+2026-6-3 20:3:23 [log] page pages/home/index onResize have been invoked
+2026-6-3 20:3:23 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:24 [log] page pages/home/index onHide have been invoked
+2026-6-3 20:3:24 [log] page pages/index/index onLoad have been invoked
+2026-6-3 20:3:24 [log] page pages/index/index onShow have been invoked
+2026-6-3 20:3:24 [log] wx.getStorage api invoke
+2026-6-3 20:3:24 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:24 [log] wx.getStorage api invoke
+2026-6-3 20:3:24 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:24 [log] wx.request api invoke
+2026-6-3 20:3:24 [log] page pages/index/index onRouteDone have been invoked
+2026-6-3 20:3:24 [log] page pages/index/index onReady have been invoked
+2026-6-3 20:3:24 [log] page pages/index/index onResize have been invoked
+2026-6-3 20:3:24 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:25 [log] wx.getStorage api invoke
+2026-6-3 20:3:25 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:25 [log] wx.getStorage api invoke
+2026-6-3 20:3:25 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:25 [log] wx.request api invoke
+2026-6-3 20:3:25 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:25 [log] wx.getSetting api invoke
+2026-6-3 20:3:26 [log] wx.getSetting success callback with msg getSetting:ok
+2026-6-3 20:3:26 [log] wx.authorize api invoke
+2026-6-3 20:3:26 [log] wx.authorize success callback with msg authorize:ok
+2026-6-3 20:3:26 [log] wx.getFuzzyLocation api invoke
+2026-6-3 20:3:26 [log] wx.getStorage api invoke
+2026-6-3 20:3:26 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:26 [log] wx.getStorage api invoke
+2026-6-3 20:3:26 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:26 [log] wx.request api invoke
+2026-6-3 20:3:26 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:26 [log] wx.getStorage api invoke
+2026-6-3 20:3:26 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:26 [log] wx.getStorage api invoke
+2026-6-3 20:3:26 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:26 [log] wx.request api invoke
+2026-6-3 20:3:26 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:28 [log] wx.showActionSheet api invoke
+2026-6-3 20:3:32 [log] wx.showActionSheet fail callback with msg showActionSheet:fail cancel
+2026-6-3 20:3:35 [log] wx.navigateTo api invoke
+2026-6-3 20:3:35 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:35 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.request api invoke
+2026-6-3 20:3:35 [log] wx.navigateTo success callback with msg navigateTo:ok
+2026-6-3 20:3:35 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:35 [log] page pages/index/index onHide have been invoked
+2026-6-3 20:3:35 [log] page pages/booking/pt-coach/index onLoad have been invoked
+2026-6-3 20:3:35 [log] page pages/booking/pt-coach/index onShow have been invoked
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.request api invoke
+2026-6-3 20:3:35 [log] page pages/booking/pt-coach/index onReady have been invoked
+2026-6-3 20:3:35 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.getStorage api invoke
+2026-6-3 20:3:35 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:35 [log] wx.request api invoke
+2026-6-3 20:3:35 [log] page pages/booking/pt-coach/index onResize have been invoked
+2026-6-3 20:3:35 [log] wx.request success callback with msg request:ok with seq 0
+2026-6-3 20:3:36 [log] page pages/booking/pt-coach/index onRouteDone have been invoked
+2026-6-3 20:3:37 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:37 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:40 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:40 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:41 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:41 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:42 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:42 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:43 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:43 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:44 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:44 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:45 [log] wx.vibrateShort api invoke
+2026-6-3 20:3:45 [log] wx.vibrateShort success callback with msg vibrateShort:ok
+2026-6-3 20:3:47 [log] page pages/booking/pt-coach/index onUnload have been invoked
+2026-6-3 20:3:47 [log] page pages/index/index onShow have been invoked
+2026-6-3 20:3:47 [log] page pages/index/index onRouteDone have been invoked
+2026-6-3 20:3:47 [log] wx.getStorage api invoke
+2026-6-3 20:3:47 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:47 [log] wx.getStorage api invoke
+2026-6-3 20:3:47 [log] wx.getStorage success callback with msg getStorage:ok
+2026-6-3 20:3:47 [log] wx.request api invoke
+2026-6-3 20:3:47 [log] page pages/index/index onResize have been invoked
+2026-6-3 20:3:47 [log] wx.request success callback with msg request:ok with seq 0

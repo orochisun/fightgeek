@@ -1,0 +1,667 @@
+<template name="tmpl_15_container">
+    <template is="tmpl_0_9" data="{{i:i}}" wx:if="{{i.nn==='9'}}"></template>
+    <comp i="{{i}}" l="{{l}}" wx:else></comp>
+</template>
+<template name="tmpl_14_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_14_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_14_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_14_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_14_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_14_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.e(15)}}" data="{{i:item,c:c,l:l}}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_13_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_13_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_13_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_13_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_13_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_13_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_12_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_12_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_12_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_12_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_12_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_12_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_11_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_11_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_11_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_11_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_11_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_11_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_10_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_10_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_10_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_10_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_10_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_10_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_9_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_9_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_9_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_9_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_9_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_9_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_8_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_8_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_8_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_8_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_8_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_8_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_7_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_7_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_7_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_7_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_7_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_7_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_6_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_6_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_6_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_6_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_6_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_6_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_5_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_5_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_5_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_5_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_5_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_5_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_5_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_5_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_4_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_4_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_4_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_4_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_4_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_4_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_4_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_4_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_3_76">
+    <swiper-item bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" itemId="{{i.p0}}" skipHiddenItemLayout="{{xs.b(i.p1,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper-item>
+</template>
+<template name="tmpl_3_75">
+    <swiper autoplay="{{xs.b(i.p0,!1)}}" bindanimationfinish="eh" bindchange="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransition="eh" cacheExtent="{{xs.b(i.p1,0)}}" circular="{{xs.b(i.p2,!1)}}" class="{{i.cl}}" current="{{xs.b(i.p3,0)}}" data-sid="{{i.sid}}" displayMultipleItems="{{xs.b(i.p4,1)}}" duration="{{xs.b(i.p5,500)}}" easingFunction="{{i.p6||'default'}}" id="{{i.uid||i.sid}}" indicatorActiveColor="{{i.p7||'#000000'}}" indicatorAlignment="{{i.p8||'auto'}}" indicatorColor="{{i.p9||'rgba(0, 0, 0, .3)'}}" indicatorDots="{{xs.b(i.p10,!1)}}" indicatorHeight="{{xs.b(i.p11,8)}}" indicatorMargin="{{xs.b(i.p12,10)}}" indicatorOffset="{{i.p13||[0,0]}}" indicatorRadius="{{xs.b(i.p14,4)}}" indicatorSpacing="{{xs.b(i.p15,4)}}" indicatorType="{{i.p16||'normal'}}" indicatorWidth="{{xs.b(i.p17,8)}}" interval="{{xs.b(i.p18,5000)}}" layoutType="{{i.p19||'normal'}}" nextMargin="{{i.p20||'0px'}}" previousMargin="{{i.p21||'0px'}}" scrollWithAnimation="{{xs.b(i.p22,true)}}" snapToEdge="{{xs.b(i.p23,false)}}" style="{{i.st}}" transformerType="{{i.p24||'scaleAndFade'}}" vertical="{{xs.b(i.p25,!1)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper>
+</template>
+<template name="tmpl_3_66">
+    <scroll-view animation="{{i.p0}}" associativeContainer="{{i.p1||''}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" binddragend="eh" binddragging="eh" binddragstart="eh" bindlongpress="eh" bindrefresherabort="eh" bindrefresherpulling="eh" bindrefresherrefresh="eh" bindrefresherrestore="eh" bindrefresherstatuschange="eh" bindrefresherwillrefresh="eh" bindscroll="eh" bindscrollend="eh" bindscrollstart="eh" bindscrolltolower="eh" bindscrolltoupper="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" bounces="{{xs.b(i.p2,true)}}" cacheExtent="{{i.p3}}" class="{{i.cl}}" clip="{{xs.b(i.p4,true)}}" data-sid="{{i.sid}}" enableBackToTop="{{xs.b(i.p5,false)}}" enableFlex="{{xs.b(i.p6,false)}}" enablePassive="{{xs.b(i.p7,false)}}" enhanced="{{xs.b(i.p8,false)}}" fastDeceleration="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" lowerThreshold="{{xs.b(i.p10,50)}}" minDragDistance="{{xs.b(i.p11,18)}}" padding="{{i.p12||[0,0,0,0]}}" pagingEnabled="{{xs.b(i.p13,false)}}" refresherBackground="{{i.p14||'#FFF'}}" refresherBallisticRefreshEnabled="{{xs.b(i.p15,false)}}" refresherDefaultStyle="{{i.p16||'black'}}" refresherEnabled="{{xs.b(i.p17,false)}}" refresherThreshold="{{xs.b(i.p18,45)}}" refresherTriggered="{{xs.b(i.p19,false)}}" refresherTwoLevelCloseThreshold="{{xs.b(i.p20,80)}}" refresherTwoLevelEnabled="{{xs.b(i.p21,false)}}" refresherTwoLevelPinned="{{xs.b(i.p22,false)}}" refresherTwoLevelScrollEnabled="{{xs.b(i.p23,false)}}" refresherTwoLevelThreshold="{{xs.b(i.p24,150)}}" refresherTwoLevelTriggered="{{xs.b(i.p25,false)}}" reverse="{{xs.b(i.p26,false)}}" scrollAnchoring="{{xs.b(i.p27,false)}}" scrollIntoView="{{i.p28}}" scrollIntoViewAlignment="{{i.p29||'start'}}" scrollIntoViewWithinExtent="{{xs.b(i.p30,false)}}" scrollLeft="{{i.p31}}" scrollTop="{{i.p32}}" scrollWithAnimation="{{xs.b(i.p33,!1)}}" scrollX="{{xs.b(i.p34,!1)}}" scrollY="{{xs.b(i.p35,!1)}}" showScrollbar="{{xs.b(i.p36,true)}}" style="{{i.st}}" type="{{i.p37||'list'}}" upperThreshold="{{xs.b(i.p38,50)}}" usingSticky="{{xs.b(i.p39,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </scroll-view>
+</template>
+<template name="tmpl_3_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_3_27">
+    <form bindreset="eh" bindsubmit="eh" bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" name="{{i.p0}}" reportSubmit="{{xs.b(i.p1,!1)}}" reportSubmitTimeout="{{xs.b(i.p2,0)}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </form>
+</template>
+<template name="tmpl_3_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_3_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_3_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_3_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_3_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_3_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_3_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_2_76">
+    <swiper-item bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" itemId="{{i.p0}}" skipHiddenItemLayout="{{xs.b(i.p1,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper-item>
+</template>
+<template name="tmpl_2_75">
+    <swiper autoplay="{{xs.b(i.p0,!1)}}" bindanimationfinish="eh" bindchange="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransition="eh" cacheExtent="{{xs.b(i.p1,0)}}" circular="{{xs.b(i.p2,!1)}}" class="{{i.cl}}" current="{{xs.b(i.p3,0)}}" data-sid="{{i.sid}}" displayMultipleItems="{{xs.b(i.p4,1)}}" duration="{{xs.b(i.p5,500)}}" easingFunction="{{i.p6||'default'}}" id="{{i.uid||i.sid}}" indicatorActiveColor="{{i.p7||'#000000'}}" indicatorAlignment="{{i.p8||'auto'}}" indicatorColor="{{i.p9||'rgba(0, 0, 0, .3)'}}" indicatorDots="{{xs.b(i.p10,!1)}}" indicatorHeight="{{xs.b(i.p11,8)}}" indicatorMargin="{{xs.b(i.p12,10)}}" indicatorOffset="{{i.p13||[0,0]}}" indicatorRadius="{{xs.b(i.p14,4)}}" indicatorSpacing="{{xs.b(i.p15,4)}}" indicatorType="{{i.p16||'normal'}}" indicatorWidth="{{xs.b(i.p17,8)}}" interval="{{xs.b(i.p18,5000)}}" layoutType="{{i.p19||'normal'}}" nextMargin="{{i.p20||'0px'}}" previousMargin="{{i.p21||'0px'}}" scrollWithAnimation="{{xs.b(i.p22,true)}}" snapToEdge="{{xs.b(i.p23,false)}}" style="{{i.st}}" transformerType="{{i.p24||'scaleAndFade'}}" vertical="{{xs.b(i.p25,!1)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper>
+</template>
+<template name="tmpl_2_66">
+    <scroll-view animation="{{i.p0}}" associativeContainer="{{i.p1||''}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" binddragend="eh" binddragging="eh" binddragstart="eh" bindlongpress="eh" bindrefresherabort="eh" bindrefresherpulling="eh" bindrefresherrefresh="eh" bindrefresherrestore="eh" bindrefresherstatuschange="eh" bindrefresherwillrefresh="eh" bindscroll="eh" bindscrollend="eh" bindscrollstart="eh" bindscrolltolower="eh" bindscrolltoupper="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" bounces="{{xs.b(i.p2,true)}}" cacheExtent="{{i.p3}}" class="{{i.cl}}" clip="{{xs.b(i.p4,true)}}" data-sid="{{i.sid}}" enableBackToTop="{{xs.b(i.p5,false)}}" enableFlex="{{xs.b(i.p6,false)}}" enablePassive="{{xs.b(i.p7,false)}}" enhanced="{{xs.b(i.p8,false)}}" fastDeceleration="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" lowerThreshold="{{xs.b(i.p10,50)}}" minDragDistance="{{xs.b(i.p11,18)}}" padding="{{i.p12||[0,0,0,0]}}" pagingEnabled="{{xs.b(i.p13,false)}}" refresherBackground="{{i.p14||'#FFF'}}" refresherBallisticRefreshEnabled="{{xs.b(i.p15,false)}}" refresherDefaultStyle="{{i.p16||'black'}}" refresherEnabled="{{xs.b(i.p17,false)}}" refresherThreshold="{{xs.b(i.p18,45)}}" refresherTriggered="{{xs.b(i.p19,false)}}" refresherTwoLevelCloseThreshold="{{xs.b(i.p20,80)}}" refresherTwoLevelEnabled="{{xs.b(i.p21,false)}}" refresherTwoLevelPinned="{{xs.b(i.p22,false)}}" refresherTwoLevelScrollEnabled="{{xs.b(i.p23,false)}}" refresherTwoLevelThreshold="{{xs.b(i.p24,150)}}" refresherTwoLevelTriggered="{{xs.b(i.p25,false)}}" reverse="{{xs.b(i.p26,false)}}" scrollAnchoring="{{xs.b(i.p27,false)}}" scrollIntoView="{{i.p28}}" scrollIntoViewAlignment="{{i.p29||'start'}}" scrollIntoViewWithinExtent="{{xs.b(i.p30,false)}}" scrollLeft="{{i.p31}}" scrollTop="{{i.p32}}" scrollWithAnimation="{{xs.b(i.p33,!1)}}" scrollX="{{xs.b(i.p34,!1)}}" scrollY="{{xs.b(i.p35,!1)}}" showScrollbar="{{xs.b(i.p36,true)}}" style="{{i.st}}" type="{{i.p37||'list'}}" upperThreshold="{{xs.b(i.p38,50)}}" usingSticky="{{xs.b(i.p39,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </scroll-view>
+</template>
+<template name="tmpl_2_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_2_27">
+    <form bindreset="eh" bindsubmit="eh" bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" name="{{i.p0}}" reportSubmit="{{xs.b(i.p1,!1)}}" reportSubmitTimeout="{{xs.b(i.p2,0)}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </form>
+</template>
+<template name="tmpl_2_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_2_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_2_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_2_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_2_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_2_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_2_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_1_76">
+    <swiper-item bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" itemId="{{i.p0}}" skipHiddenItemLayout="{{xs.b(i.p1,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper-item>
+</template>
+<template name="tmpl_1_75">
+    <swiper autoplay="{{xs.b(i.p0,!1)}}" bindanimationfinish="eh" bindchange="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransition="eh" cacheExtent="{{xs.b(i.p1,0)}}" circular="{{xs.b(i.p2,!1)}}" class="{{i.cl}}" current="{{xs.b(i.p3,0)}}" data-sid="{{i.sid}}" displayMultipleItems="{{xs.b(i.p4,1)}}" duration="{{xs.b(i.p5,500)}}" easingFunction="{{i.p6||'default'}}" id="{{i.uid||i.sid}}" indicatorActiveColor="{{i.p7||'#000000'}}" indicatorAlignment="{{i.p8||'auto'}}" indicatorColor="{{i.p9||'rgba(0, 0, 0, .3)'}}" indicatorDots="{{xs.b(i.p10,!1)}}" indicatorHeight="{{xs.b(i.p11,8)}}" indicatorMargin="{{xs.b(i.p12,10)}}" indicatorOffset="{{i.p13||[0,0]}}" indicatorRadius="{{xs.b(i.p14,4)}}" indicatorSpacing="{{xs.b(i.p15,4)}}" indicatorType="{{i.p16||'normal'}}" indicatorWidth="{{xs.b(i.p17,8)}}" interval="{{xs.b(i.p18,5000)}}" layoutType="{{i.p19||'normal'}}" nextMargin="{{i.p20||'0px'}}" previousMargin="{{i.p21||'0px'}}" scrollWithAnimation="{{xs.b(i.p22,true)}}" snapToEdge="{{xs.b(i.p23,false)}}" style="{{i.st}}" transformerType="{{i.p24||'scaleAndFade'}}" vertical="{{xs.b(i.p25,!1)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper>
+</template>
+<template name="tmpl_1_66">
+    <scroll-view animation="{{i.p0}}" associativeContainer="{{i.p1||''}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" binddragend="eh" binddragging="eh" binddragstart="eh" bindlongpress="eh" bindrefresherabort="eh" bindrefresherpulling="eh" bindrefresherrefresh="eh" bindrefresherrestore="eh" bindrefresherstatuschange="eh" bindrefresherwillrefresh="eh" bindscroll="eh" bindscrollend="eh" bindscrollstart="eh" bindscrolltolower="eh" bindscrolltoupper="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" bounces="{{xs.b(i.p2,true)}}" cacheExtent="{{i.p3}}" class="{{i.cl}}" clip="{{xs.b(i.p4,true)}}" data-sid="{{i.sid}}" enableBackToTop="{{xs.b(i.p5,false)}}" enableFlex="{{xs.b(i.p6,false)}}" enablePassive="{{xs.b(i.p7,false)}}" enhanced="{{xs.b(i.p8,false)}}" fastDeceleration="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" lowerThreshold="{{xs.b(i.p10,50)}}" minDragDistance="{{xs.b(i.p11,18)}}" padding="{{i.p12||[0,0,0,0]}}" pagingEnabled="{{xs.b(i.p13,false)}}" refresherBackground="{{i.p14||'#FFF'}}" refresherBallisticRefreshEnabled="{{xs.b(i.p15,false)}}" refresherDefaultStyle="{{i.p16||'black'}}" refresherEnabled="{{xs.b(i.p17,false)}}" refresherThreshold="{{xs.b(i.p18,45)}}" refresherTriggered="{{xs.b(i.p19,false)}}" refresherTwoLevelCloseThreshold="{{xs.b(i.p20,80)}}" refresherTwoLevelEnabled="{{xs.b(i.p21,false)}}" refresherTwoLevelPinned="{{xs.b(i.p22,false)}}" refresherTwoLevelScrollEnabled="{{xs.b(i.p23,false)}}" refresherTwoLevelThreshold="{{xs.b(i.p24,150)}}" refresherTwoLevelTriggered="{{xs.b(i.p25,false)}}" reverse="{{xs.b(i.p26,false)}}" scrollAnchoring="{{xs.b(i.p27,false)}}" scrollIntoView="{{i.p28}}" scrollIntoViewAlignment="{{i.p29||'start'}}" scrollIntoViewWithinExtent="{{xs.b(i.p30,false)}}" scrollLeft="{{i.p31}}" scrollTop="{{i.p32}}" scrollWithAnimation="{{xs.b(i.p33,!1)}}" scrollX="{{xs.b(i.p34,!1)}}" scrollY="{{xs.b(i.p35,!1)}}" showScrollbar="{{xs.b(i.p36,true)}}" style="{{i.st}}" type="{{i.p37||'list'}}" upperThreshold="{{xs.b(i.p38,50)}}" usingSticky="{{xs.b(i.p39,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </scroll-view>
+</template>
+<template name="tmpl_1_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_1_27">
+    <form bindreset="eh" bindsubmit="eh" bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" name="{{i.p0}}" reportSubmit="{{xs.b(i.p1,!1)}}" reportSubmitTimeout="{{xs.b(i.p2,0)}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </form>
+</template>
+<template name="tmpl_1_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_1_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_1_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_1_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_1_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_1_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_1_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_0_9">{{i.v}}</template>
+<template name="tmpl_0_52">
+    <open-data binderror="eh" bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" defaultAvatar="{{i.p0}}" defaultText="{{i.p1}}" id="{{i.uid||i.sid}}" lang="{{i.p2||'en'}}" openGid="{{i.p3}}" style="{{i.st}}" type="{{i.p4}}"></open-data>
+</template>
+<template name="tmpl_0_81">
+    <video adUnitId="{{i.p0}}" animation="{{i.p1}}" autoPauseIfNavigate="{{xs.b(i.p2,true)}}" autoPauseIfOpenNative="{{xs.b(i.p3,true)}}" autoplay="{{xs.b(i.p4,!1)}}" backgroundPoster="{{i.p5}}" bindadclose="eh" bindaderror="eh" bindadload="eh" bindadplay="eh" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindcastinginterrupt="eh" bindcastingstatechange="eh" bindcastinguserselect="eh" bindcontrolstoggle="eh" bindended="eh" bindenterpictureinpicture="eh" binderror="eh" bindfullscreenchange="eh" bindleavepictureinpicture="eh" bindloadedmetadata="eh" bindpause="eh" bindplay="eh" bindprogress="eh" bindseekcomplete="eh" bindtap="eh" bindtimeupdate="eh" bindtransitionend="eh" bindwaiting="eh" certificateUrl="{{i.p6}}" class="{{i.cl}}" controls="{{xs.b(i.p7,!0)}}" danmuBtn="{{i.p8}}" danmuList="{{i.p9}}" data-sid="{{i.sid}}" direction="{{i.p10}}" duration="{{i.p11}}" enableAutoRotation="{{xs.b(i.p12,false)}}" enableDanmu="{{i.p13}}" enablePlayGesture="{{xs.b(i.p14,false)}}" enableProgressGesture="{{xs.b(i.p15,!0)}}" id="{{i.uid||i.sid}}" initialTime="{{xs.b(i.p16,0)}}" isDrm="{{xs.b(i.p17,false)}}" isLive="{{xs.b(i.p18,false)}}" licenseUrl="{{i.p19}}" loop="{{xs.b(i.p20,!1)}}" muted="{{xs.b(i.p21,!1)}}" objectFit="{{i.p22||'contain'}}" pageGesture="{{xs.b(i.p23,!1)}}" pictureInPictureMode="{{i.p24||[]}}" playBtnPosition="{{i.p25||'bottom'}}" poster="{{i.p26}}" posterForCrawler="{{i.p27}}" preferredPeakBitRate="{{i.p28}}" provisionUrl="{{i.p29}}" referrerPolicy="{{i.p30||'no-referrer'}}" showBackgroundPlaybackButton="{{xs.b(i.p31,false)}}" showBottomProgress="{{xs.b(i.p32,true)}}" showCastingButton="{{xs.b(i.p33,false)}}" showCenterPlayBtn="{{xs.b(i.p34,!0)}}" showFullscreenBtn="{{xs.b(i.p35,!0)}}" showMuteBtn="{{xs.b(i.p36,!1)}}" showPlayBtn="{{xs.b(i.p37,!0)}}" showProgress="{{xs.b(i.p38,!0)}}" showScreenLockButton="{{xs.b(i.p39,false)}}" showSnapshotButton="{{xs.b(i.p40,false)}}" src="{{i.p41}}" style="{{i.st}}" title="{{i.p42}}" vslideGesture="{{xs.b(i.p43,false)}}" vslideGestureInFullscreen="{{xs.b(i.p44,true)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </video>
+</template>
+<template name="tmpl_0_2">
+    <image binderror="eh" bindload="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" fadeIn="{{xs.b(i.p0,false)}}" id="{{i.uid||i.sid}}" lazyLoad="{{xs.b(i.p1,!1)}}" mode="{{i.p2||'scaleToFill'}}" showMenuByLongpress="{{xs.b(i.p3,false)}}" src="{{i.p4}}" style="{{i.st}}" webp="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </image>
+</template>
+<template name="tmpl_0_4">
+    <image class="{{i.cl}}" data-sid="{{i.sid}}" fadeIn="{{xs.b(i.p0,false)}}" id="{{i.uid||i.sid}}" lazyLoad="{{xs.b(i.p1,!1)}}" mode="{{i.p2||'scaleToFill'}}" showMenuByLongpress="{{xs.b(i.p3,false)}}" src="{{i.p4}}" style="{{i.st}}" webp="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </image>
+</template>
+<template name="tmpl_0_76">
+    <swiper-item bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" itemId="{{i.p0}}" skipHiddenItemLayout="{{xs.b(i.p1,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper-item>
+</template>
+<template name="tmpl_0_75">
+    <swiper autoplay="{{xs.b(i.p0,!1)}}" bindanimationfinish="eh" bindchange="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransition="eh" cacheExtent="{{xs.b(i.p1,0)}}" circular="{{xs.b(i.p2,!1)}}" class="{{i.cl}}" current="{{xs.b(i.p3,0)}}" data-sid="{{i.sid}}" displayMultipleItems="{{xs.b(i.p4,1)}}" duration="{{xs.b(i.p5,500)}}" easingFunction="{{i.p6||'default'}}" id="{{i.uid||i.sid}}" indicatorActiveColor="{{i.p7||'#000000'}}" indicatorAlignment="{{i.p8||'auto'}}" indicatorColor="{{i.p9||'rgba(0, 0, 0, .3)'}}" indicatorDots="{{xs.b(i.p10,!1)}}" indicatorHeight="{{xs.b(i.p11,8)}}" indicatorMargin="{{xs.b(i.p12,10)}}" indicatorOffset="{{i.p13||[0,0]}}" indicatorRadius="{{xs.b(i.p14,4)}}" indicatorSpacing="{{xs.b(i.p15,4)}}" indicatorType="{{i.p16||'normal'}}" indicatorWidth="{{xs.b(i.p17,8)}}" interval="{{xs.b(i.p18,5000)}}" layoutType="{{i.p19||'normal'}}" nextMargin="{{i.p20||'0px'}}" previousMargin="{{i.p21||'0px'}}" scrollWithAnimation="{{xs.b(i.p22,true)}}" snapToEdge="{{xs.b(i.p23,false)}}" style="{{i.st}}" transformerType="{{i.p24||'scaleAndFade'}}" vertical="{{xs.b(i.p25,!1)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </swiper>
+</template>
+<template name="tmpl_0_66">
+    <scroll-view animation="{{i.p0}}" associativeContainer="{{i.p1||''}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" binddragend="eh" binddragging="eh" binddragstart="eh" bindlongpress="eh" bindrefresherabort="eh" bindrefresherpulling="eh" bindrefresherrefresh="eh" bindrefresherrestore="eh" bindrefresherstatuschange="eh" bindrefresherwillrefresh="eh" bindscroll="eh" bindscrollend="eh" bindscrollstart="eh" bindscrolltolower="eh" bindscrolltoupper="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" bounces="{{xs.b(i.p2,true)}}" cacheExtent="{{i.p3}}" class="{{i.cl}}" clip="{{xs.b(i.p4,true)}}" data-sid="{{i.sid}}" enableBackToTop="{{xs.b(i.p5,false)}}" enableFlex="{{xs.b(i.p6,false)}}" enablePassive="{{xs.b(i.p7,false)}}" enhanced="{{xs.b(i.p8,false)}}" fastDeceleration="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" lowerThreshold="{{xs.b(i.p10,50)}}" minDragDistance="{{xs.b(i.p11,18)}}" padding="{{i.p12||[0,0,0,0]}}" pagingEnabled="{{xs.b(i.p13,false)}}" refresherBackground="{{i.p14||'#FFF'}}" refresherBallisticRefreshEnabled="{{xs.b(i.p15,false)}}" refresherDefaultStyle="{{i.p16||'black'}}" refresherEnabled="{{xs.b(i.p17,false)}}" refresherThreshold="{{xs.b(i.p18,45)}}" refresherTriggered="{{xs.b(i.p19,false)}}" refresherTwoLevelCloseThreshold="{{xs.b(i.p20,80)}}" refresherTwoLevelEnabled="{{xs.b(i.p21,false)}}" refresherTwoLevelPinned="{{xs.b(i.p22,false)}}" refresherTwoLevelScrollEnabled="{{xs.b(i.p23,false)}}" refresherTwoLevelThreshold="{{xs.b(i.p24,150)}}" refresherTwoLevelTriggered="{{xs.b(i.p25,false)}}" reverse="{{xs.b(i.p26,false)}}" scrollAnchoring="{{xs.b(i.p27,false)}}" scrollIntoView="{{i.p28}}" scrollIntoViewAlignment="{{i.p29||'start'}}" scrollIntoViewWithinExtent="{{xs.b(i.p30,false)}}" scrollLeft="{{i.p31}}" scrollTop="{{i.p32}}" scrollWithAnimation="{{xs.b(i.p33,!1)}}" scrollX="{{xs.b(i.p34,!1)}}" scrollY="{{xs.b(i.p35,!1)}}" showScrollbar="{{xs.b(i.p36,true)}}" style="{{i.st}}" type="{{i.p37||'list'}}" upperThreshold="{{xs.b(i.p38,50)}}" usingSticky="{{xs.b(i.p39,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </scroll-view>
+</template>
+<template name="tmpl_0_44">
+    <movable-view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindchange="eh" bindhtouchmove="eh" bindlongpress="eh" bindscale="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" bindvtouchmove="eh" class="{{i.cl}}" damping="{{xs.b(i.p1,20)}}" data-sid="{{i.sid}}" direction="{{i.p2||none}}" disabled="{{i.p3}}" friction="{{xs.b(i.p4,2)}}" height="{{i.p5||'10px'}}" id="{{i.uid||i.sid}}" inertia="{{xs.b(i.p6,!1)}}" outOfBounds="{{xs.b(i.p7,!1)}}" scale="{{xs.b(i.p8,!1)}}" scaleMax="{{xs.b(i.p9,10)}}" scaleMin="{{xs.b(i.p10,0.5)}}" scaleValue="{{xs.b(i.p11,1)}}" style="{{i.st}}" width="{{i.p12||'10px'}}" x="{{i.p13}}" y="{{i.p14}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </movable-view>
+</template>
+<template name="tmpl_0_43">
+    <movable-area bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" scaleArea="{{xs.b(i.p0,!1)}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </movable-area>
+</template>
+<template name="tmpl_0_79_blur">
+    <textarea adjustKeyboardTo="{{i.p0||'cursor'}}" adjustPosition="{{xs.b(i.p1,true)}}" autoFocus="{{xs.b(i.p2,!1)}}" autoHeight="{{xs.b(i.p3,!1)}}" bindblur="eh" bindconfirm="eh" bindfocus="eh" bindinput="eh" bindkeyboardcompositionend="eh" bindkeyboardcompositionstart="eh" bindkeyboardcompositionupdate="eh" bindkeyboardheightchange="eh" bindlinechange="eh" bindselectionchange="eh" bindtap="eh" class="{{i.cl}}" confirmHold="{{xs.b(i.p4,false)}}" confirmType="{{i.p5||'return'}}" cursor="{{xs.b(i.p6,-1)}}" cursorSpacing="{{xs.b(i.p7,0)}}" data-sid="{{i.sid}}" disableDefaultPadding="{{xs.b(i.p8,false)}}" disabled="{{i.p9}}" fixed="{{xs.b(i.p10,!1)}}" holdKeyboard="{{xs.b(i.p11,false)}}" id="{{i.uid||i.sid}}" maxlength="{{xs.b(i.p12,140)}}" name="{{i.p13}}" placeholder="{{i.p14}}" placeholderClass="{{i.p15||'textarea-placeholder'}}" placeholderStyle="{{i.p16}}" selectionEnd="{{xs.b(i.p17,-1)}}" selectionStart="{{xs.b(i.p18,-1)}}" showConfirmBar="{{xs.b(i.p19,true)}}" style="{{i.st}}" value="{{i.p20}}"></textarea>
+</template>
+<template name="tmpl_0_79_focus">
+    <textarea adjustKeyboardTo="{{i.p0||'cursor'}}" adjustPosition="{{xs.b(i.p1,true)}}" autoFocus="{{xs.b(i.p2,!1)}}" autoHeight="{{xs.b(i.p3,!1)}}" bindblur="eh" bindconfirm="eh" bindfocus="eh" bindinput="eh" bindkeyboardcompositionend="eh" bindkeyboardcompositionstart="eh" bindkeyboardcompositionupdate="eh" bindkeyboardheightchange="eh" bindlinechange="eh" bindselectionchange="eh" bindtap="eh" class="{{i.cl}}" confirmHold="{{xs.b(i.p4,false)}}" confirmType="{{i.p5||'return'}}" cursor="{{xs.b(i.p6,-1)}}" cursorSpacing="{{xs.b(i.p7,0)}}" data-sid="{{i.sid}}" disableDefaultPadding="{{xs.b(i.p8,false)}}" disabled="{{i.p9}}" fixed="{{xs.b(i.p10,!1)}}" focus="{{xs.b(i.focus,!1)}}" holdKeyboard="{{xs.b(i.p11,false)}}" id="{{i.uid||i.sid}}" maxlength="{{xs.b(i.p12,140)}}" name="{{i.p13}}" placeholder="{{i.p14}}" placeholderClass="{{i.p15||'textarea-placeholder'}}" placeholderStyle="{{i.p16}}" selectionEnd="{{xs.b(i.p17,-1)}}" selectionStart="{{xs.b(i.p18,-1)}}" showConfirmBar="{{xs.b(i.p19,true)}}" style="{{i.st}}" value="{{i.p20}}"></textarea>
+</template>
+<template name="tmpl_0_79">
+    <template is="{{xs.c(i,'tmpl_0_')}}" data="{{i:i,c:c}}"></template>
+</template>
+<template name="tmpl_0_77">
+    <switch bindchange="eh" bindtap="eh" checked="{{xs.b(i.p0,!1)}}" class="{{i.cl}}" color="{{i.p1||'#04BE02'}}" data-sid="{{i.sid}}" disabled="{{i.p2}}" id="{{i.uid||i.sid}}" name="{{i.p3}}" style="{{i.st}}" type="{{i.p4||'switch'}}"></switch>
+</template>
+<template name="tmpl_0_68">
+    <slider activeColor="{{i.p0||'#1aad19'}}" backgroundColor="{{i.p1||'#e9e9e9'}}" bindchange="eh" bindchanging="eh" bindtap="eh" blockColor="{{i.p2||'#ffffff'}}" blockSize="{{xs.b(i.p3,28)}}" class="{{i.cl}}" color="{{i.p4||'#e9e9e9'}}" data-sid="{{i.sid}}" disabled="{{i.p5}}" id="{{i.uid||i.sid}}" max="{{xs.b(i.p6,100)}}" min="{{xs.b(i.p7,0)}}" name="{{i.p8}}" selectedColor="{{i.p9||'#1aad19'}}" showValue="{{xs.b(i.p10,!1)}}" step="{{xs.b(i.p11,1)}}" style="{{i.st}}" value="{{xs.b(i.p12,0)}}"></slider>
+</template>
+<template name="tmpl_0_56">
+    <picker bindcancel="eh" bindchange="eh" bindcolumnchange="eh" bindtap="eh" class="{{i.cl}}" customItem="{{i.p0}}" data-sid="{{i.sid}}" disabled="{{i.p1}}" end="{{i.p2}}" fields="{{i.p3||'day'}}" headerText="{{i.p4}}" id="{{i.uid||i.sid}}" level="{{i.p5||region}}" mode="{{i.p6||'selector'}}" name="{{i.p7}}" range="{{i.p8}}" rangeKey="{{i.p9}}" start="{{i.p10}}" style="{{i.st}}" value="{{i.p11}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </picker>
+</template>
+<template name="tmpl_0_35">
+    <label bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" for="{{i.p0}}" id="{{i.uid||i.sid}}" name="{{i.p1}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </label>
+</template>
+<template name="tmpl_0_33_blur">
+    <input adjustPosition="{{xs.b(i.p0,true)}}" alwaysEmbed="{{xs.b(i.p1,false)}}" autoFill="{{i.p2}}" bindblur="eh" bindconfirm="eh" bindfocus="eh" bindinput="eh" bindkeyboardcompositionend="eh" bindkeyboardcompositionstart="eh" bindkeyboardcompositionupdate="eh" bindkeyboardheightchange="eh" bindnicknamereview="eh" bindselectionchange="eh" bindtap="eh" class="{{i.cl}}" confirmHold="{{xs.b(i.p3,!1)}}" confirmType="{{i.p4||'done'}}" cursor="{{xs.b(i.p5,-1)}}" cursorColor="{{i.p6}}" cursorSpacing="{{xs.b(i.p7,0)}}" data-sid="{{i.sid}}" disabled="{{i.p8}}" holdKeyboard="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" maxlength="{{xs.b(i.p10,140)}}" name="{{i.p11}}" password="{{xs.b(i.p12,!1)}}" placeholder="{{i.p13}}" placeholderClass="{{i.p14||'input-placeholder'}}" placeholderStyle="{{i.p15}}" safePasswordCertPath="{{i.p16}}" safePasswordCustomHash="{{i.p17}}" safePasswordLength="{{i.p18}}" safePasswordNonce="{{i.p19}}" safePasswordSalt="{{i.p20}}" safePasswordTimeStamp="{{i.p21}}" selectionEnd="{{xs.b(i.p22,-1)}}" selectionStart="{{xs.b(i.p23,-1)}}" style="{{i.st}}" type="{{i.p24||''}}" value="{{i.p25}}"></input>
+</template>
+<template name="tmpl_0_33_focus">
+    <input adjustPosition="{{xs.b(i.p0,true)}}" alwaysEmbed="{{xs.b(i.p1,false)}}" autoFill="{{i.p2}}" bindblur="eh" bindconfirm="eh" bindfocus="eh" bindinput="eh" bindkeyboardcompositionend="eh" bindkeyboardcompositionstart="eh" bindkeyboardcompositionupdate="eh" bindkeyboardheightchange="eh" bindnicknamereview="eh" bindselectionchange="eh" bindtap="eh" class="{{i.cl}}" confirmHold="{{xs.b(i.p3,!1)}}" confirmType="{{i.p4||'done'}}" cursor="{{xs.b(i.p5,-1)}}" cursorColor="{{i.p6}}" cursorSpacing="{{xs.b(i.p7,0)}}" data-sid="{{i.sid}}" disabled="{{i.p8}}" focus="{{xs.b(i.focus,!1)}}" holdKeyboard="{{xs.b(i.p9,false)}}" id="{{i.uid||i.sid}}" maxlength="{{xs.b(i.p10,140)}}" name="{{i.p11}}" password="{{xs.b(i.p12,!1)}}" placeholder="{{i.p13}}" placeholderClass="{{i.p14||'input-placeholder'}}" placeholderStyle="{{i.p15}}" safePasswordCertPath="{{i.p16}}" safePasswordCustomHash="{{i.p17}}" safePasswordLength="{{i.p18}}" safePasswordNonce="{{i.p19}}" safePasswordSalt="{{i.p20}}" safePasswordTimeStamp="{{i.p21}}" selectionEnd="{{xs.b(i.p22,-1)}}" selectionStart="{{xs.b(i.p23,-1)}}" style="{{i.st}}" type="{{i.p24||''}}" value="{{i.p25}}"></input>
+</template>
+<template name="tmpl_0_33">
+    <template is="{{xs.c(i,'tmpl_0_')}}" data="{{i:i,c:c}}"></template>
+</template>
+<template name="tmpl_0_27">
+    <form bindreset="eh" bindsubmit="eh" bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" name="{{i.p0}}" reportSubmit="{{xs.b(i.p1,!1)}}" reportSubmitTimeout="{{xs.b(i.p2,0)}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </form>
+</template>
+<template name="tmpl_0_14">
+    <button appParameter="{{i.p0}}" bindagreeprivacyauthorization="eh" bindchooseavatar="eh" bindcontact="eh" binderror="eh" bindgetphonenumber="eh" bindgetrealtimephonenumber="eh" bindgetuserinfo="eh" bindlaunchapp="eh" bindlongpress="eh" bindopensetting="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" businessId="{{i.p1}}" class="{{i.cl}}" data-sid="{{i.sid}}" disabled="{{i.p2}}" formType="{{i.p3}}" hoverClass="{{i.p4||'button-hover'}}" hoverStartTime="{{xs.b(i.p5,20)}}" hoverStayTime="{{xs.b(i.p6,70)}}" hoverStopPropagation="{{xs.b(i.p7,!1)}}" id="{{i.uid||i.sid}}" lang="{{i.p8||en}}" loading="{{xs.b(i.p9,!1)}}" name="{{i.p10}}" openType="{{i.p11}}" plain="{{xs.b(i.p12,!1)}}" sendMessageImg="{{i.p13}}" sendMessagePath="{{i.p14}}" sendMessageTitle="{{i.p15}}" sessionFrom="{{i.p16}}" showMessageCard="{{xs.b(i.p17,false)}}" size="{{i.p18||'default'}}" style="{{i.st}}" type="{{i.p19}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </button>
+</template>
+<template name="tmpl_0_7">
+    <text bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_0_5">
+    <text class="{{i.cl}}" data-sid="{{i.sid}}" decode="{{xs.b(i.p0,!1)}}" id="{{i.uid||i.sid}}" maxLines="{{i.p1}}" overflow="{{i.p2||visible}}" selectable="{{xs.b(i.p3,!1)}}" space="{{i.p4}}" style="{{i.st}}" userSelect="{{xs.b(i.p5,false)}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </text>
+</template>
+<template name="tmpl_0_62">
+    <rich-text bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" mode="{{i.p0||'default'}}" nodes="{{i.p1||[]}}" space="{{i.p2}}" style="{{i.st}}" userSelect="{{xs.b(i.p3,false)}}"></rich-text>
+</template>
+<template name="tmpl_0_32">
+    <icon bindtap="eh" class="{{i.cl}}" color="{{i.p0}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" size="{{xs.b(i.p1,23)}}" style="{{i.st}}" type="{{i.p2}}"></icon>
+</template>
+<template name="tmpl_0_8">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchmove="eh" bindtouchstart="eh" bindtransitionend="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_0_1">
+    <view bindtap="eh" class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_0_3">
+    <view class="{{i.cl}}" data-sid="{{i.sid}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_0_6">
+    <view animation="{{i.p0}}" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="tmpl_0_0">
+    <view animation="{{i.p0}}" bindanimationend="eh" bindanimationiteration="eh" bindanimationstart="eh" bindlongpress="eh" bindtap="eh" bindtouchcancel="eh" bindtouchend="eh" bindtouchstart="eh" bindtransitionend="eh" catchtouchmove="eh" class="{{i.cl}}" data-sid="{{i.sid}}" hoverClass="{{i.p1||'none'}}" hoverStartTime="{{xs.b(i.p2,50)}}" hoverStayTime="{{xs.b(i.p3,400)}}" hoverStopPropagation="{{xs.b(i.p4,!1)}}" id="{{i.uid||i.sid}}" style="{{i.st}}">
+        <template is="{{xs.a(c,item.nn,l)}}" data="{{ i:item,c:c+1,l:xs.f(l,item.nn) }}" wx:for="{{i.cn}}" wx:key="sid"></template>
+    </view>
+</template>
+<template name="taro_tmpl">
+    <template is="{{xs.a(0,item.nn,'')}}" data="{{ i:item,c:1,l:xs.f('',item.nn) }}" wx:for="{{root.cn}}" wx:key="sid"></template>
+</template>
+<wxs module="xs" src="utils.wxs" />

@@ -1,0 +1,21 @@
+AppID: wx2e1deadc021eaeb9 (FIGHT GEEK / 极斗)
+逆向时间: 2026-06-03
+
+当前微信号 WeChat user: 987c68f36701646de50aed758477eac3
+上一账号(已替换): 5937eb5079f792a66c065ac71f12adae
+
+原始路径（Mac 微信本地）:
+  local:    ~/Library/Containers/com.tencent.xinWeChat/Data/Documents/app_data/radium/users/987c68f36701646de50aed758477eac3/applet/local/wx2e1deadc021eaeb9
+  packages: .../applet/packages/wx2e1deadc021eaeb9/29/
+    __APP__.wxapkg           主包 v29
+    _pages_booking_.wxapkg   约课分包
+
+本目录（reverse/wx2e1deadc021eaeb9/）:
+  applet-local/          旧账号本地缓存（归档）
+  applet-local-new/      新账号本地缓存
+  applet-packages/       解密前 wxapkg
+  unpacked/main/dec/     主包反编译源码
+  unpacked/booking/      约课分包解包
+  docs/BOOKING_API.md    约课接口文档（静态逆向）
+
+Python 调用端见: ../../client/

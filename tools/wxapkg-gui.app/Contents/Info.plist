@@ -1,0 +1,27 @@
+<!DOCTYPE plIST PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>CFBundlePackageType</key>
+        <string>APPL</string>
+        <key>CFBundleName</key>
+        <string>微信小程序解包工具</string>
+        <key>CFBundleExecutable</key>
+        <string>wxapkg-gui</string>
+        <key>CFBundleIdentifier</key>
+        <string>com.wux1an.wxapkg</string>
+        <key>CFBundleVersion</key>
+        <string>2.0.0</string>
+        <key>CFBundleGetInfoString</key>
+        <string>仅供学习研究使用，请勿用于任何侵权或非法用途</string>
+        <key>CFBundleShortVersionString</key>
+        <string>2.0.0</string>
+        <key>CFBundleIconFile</key>
+        <string>iconfile</string>
+        <key>LSMinimumSystemVersion</key>
+        <string>10.13.0</string>
+        <key>NSHighResolutionCapable</key>
+        <string>true</string>
+        <key>NSHumanReadableCopyright</key>
+        <string>© 2026 wux1an. All rights reserved.</string>
+    </dict>
+</plist>

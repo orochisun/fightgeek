@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "会员",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#E7262A",
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom",
+    "backgroundColor": "#f2f2f2",
+    "usingComponents": {
+        "comp": "../../comp"
+    }
+}
