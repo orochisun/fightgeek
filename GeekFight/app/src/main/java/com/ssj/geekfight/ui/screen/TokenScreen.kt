@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -56,6 +57,19 @@ import com.ssj.geekfight.ui.theme.Surface
 import com.ssj.geekfight.ui.theme.Surface2
 import com.ssj.geekfight.viewmodel.AppViewModel
 
+private data class PresetAccount(val label: String, val token: String)
+
+private val PRESET_ACCOUNTS = listOf(
+    PresetAccount(
+        label = "路人",
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODExNDE2OTcsImlhdCI6MTc4MDUzNjg5Nywiand0Um9sZVR5cGUiOjEsImp3dFVzZXJJZCI6MzM0Nn0.lZUmNndJnQuaRVdxmow-ST_iiAqlKr8YIyi63scKvPE",
+    ),
+    PresetAccount(
+        label = "ssj",
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODExNDY0NDQsImlhdCI6MTc4MDU0MTY0NCwiand0Um9sZVR5cGUiOjEsImp3dFVzZXJJZCI6MzM0N30.84pmG2uWiEIaRJ-VBK1hIyXprwCwpa6s9iX7nW4jzu8",
+    ),
+)
+
 @Composable
 fun TokenScreen(viewModel: AppViewModel) {
     val tokenState by viewModel.tokenState.collectAsState()
@@ -87,8 +101,34 @@ fun TokenScreen(viewModel: AppViewModel) {
             }
         }
 
+        // Preset accounts
+        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text("PRESET ACCOUNTS", style = MaterialTheme.typography.labelLarge, color = Grey2)
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                PRESET_ACCOUNTS.forEach { preset ->
+                    val isActive = tokenState.token == preset.token
+                    OutlinedButton(
+                        onClick = { viewModel.saveToken(preset.token) },
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            containerColor = if (isActive) Red.copy(alpha = 0.15f) else Color.Transparent,
+                            contentColor = if (isActive) Red else Grey2,
+                        ),
+                        border = androidx.compose.foundation.BorderStroke(
+                            1.dp, if (isActive) Red else Border,
+                        ),
+                        shape = RoundedCornerShape(6.dp),
+                    ) {
+                        if (isActive) Icon(Icons.Default.CheckCircle, null,
+                            modifier = Modifier.padding(end = 4.dp).size(16.dp))
+                        Text(preset.label, fontWeight = FontWeight.Bold)
+                    }
+                }
+            }
+        }
+
         Text(
-            "从微信小程序「极斗」抓包获取 Authorization / fgm_token，粘贴后保存。",
+            "或从微信小程序「极斗」抓包获取 Authorization / fgm_token，粘贴后保存。",
             style = MaterialTheme.typography.bodySmall,
             color = Grey3,
         )
