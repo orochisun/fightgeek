@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Work
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -61,6 +62,8 @@ private data class NavTab(val label: String, val icon: ImageVector)
 private val TABS = listOf(
     NavTab("团课", Icons.Default.FitnessCenter),
     NavTab("私教", Icons.Default.Person),
+    // NavTab("统计", Icons.Default.BarChart), // 暂停统计入口
+    NavTab("Office", Icons.Default.Work),
     NavTab("记录", Icons.Default.CalendarMonth),
     NavTab("Token", Icons.Default.Key),
 )
@@ -120,8 +123,10 @@ fun HomeScreen(viewModel: AppViewModel) {
                 when (selectedTab) {
                     0 -> ClassListScreen(viewModel)
                     1 -> PtScreen(viewModel)
-                    2 -> RecordsScreen(viewModel)
-                    3 -> TokenScreen(viewModel)
+                    // 2 -> StatsScreen(viewModel) // 暂停统计页面
+                    2 -> OfficeScreen(viewModel)
+                    3 -> RecordsScreen(viewModel)
+                    4 -> TokenScreen(viewModel)
                 }
             }
         }

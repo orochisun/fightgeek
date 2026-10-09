@@ -124,6 +124,46 @@ class BookingAPI:
             params={"storeId": store_id},
         )
 
+    def get_all_pt_coaches(self) -> dict[str, Any]:
+        """获取所有门店的教练，并在结果中标注门店。"""
+        regions_body = self.get_regional_list()
+        regions = (regions_body.get("data") or {}).get("list") or []
+        stores: list[dict[str, Any]] = []
+        seen_store_ids: set[int] = set()
+        for region in regions:
+            stores_body = self.get_store_list(region["id"])
+            for store in (stores_body.get("data") or {}).get("list") or []:
+                store_id = store.get("id")
+                if store_id not in seen_store_ids:
+                    seen_store_ids.add(store_id)
+                    stores.append(store)
+
+        result: list[dict[str, Any]] = []
+        coaches_by_id: dict[int, dict[str, Any]] = {}
+
+        for store in stores:
+            store_id = store.get("id")
+            coaches_body = self.get_pt_coaches(store_id)
+            coaches_data = coaches_body.get("data")
+            if not isinstance(coaches_data, dict):
+                coaches_data = coaches_body
+            store_ref = {"storeId": store_id, "storeName": store.get("name")}
+            for coach in coaches_data.get("list") or []:
+                coach_id = coach.get("id")
+                if coach_id is None:
+                    result.append({**coach, "stores": [store_ref]})
+                    continue
+
+                existing = coaches_by_id.get(coach_id)
+                if existing is None:
+                    existing = {**coach, "stores": [store_ref]}
+                    coaches_by_id[coach_id] = existing
+                    result.append(existing)
+                elif store_ref not in existing["stores"]:
+                    existing["stores"].append(store_ref)
+
+        return {"data": {"list": result}}
+
     def pt_booking_precheck(
         self,
         *,

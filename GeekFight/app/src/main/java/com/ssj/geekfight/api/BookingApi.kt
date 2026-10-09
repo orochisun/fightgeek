@@ -16,8 +16,12 @@ import com.ssj.geekfight.api.dto.StoreListData
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
-class BookingApi(private val client: FightGeekClient) {
+class BookingApi(
+    private val client: FightGeekClient,
+    private val context: android.content.Context? = null,
+) {
 
     // ── Regions & Stores ─────────────────────────────────────────────────────
 
@@ -32,26 +36,44 @@ class BookingApi(private val client: FightGeekClient) {
             params = mapOf("regionalId" to regionalId),
             skipToken = true,
         )
-        return resp.data?.list?.map {
+        val stores = resp.data?.list?.map {
             Store(it.id, it.name, it.address ?: "", it.regionalId ?: regionalId)
         } ?: emptyList()
+        return stores.sortedWith(compareBy { storeOrder(it.id) })
+    }
+
+    private fun storeOrder(id: Int): Int = when (id) {
+        1101013 -> 0   // 望京凯德
+        1101005 -> 1   // 万柳
+        1101010 -> 2   // 中关村融科
+        1101007 -> 3   // 五棵松万达
+        1101003 -> 4   // 清河万象汇
+        else    -> 100 + id
     }
 
     // ── Group Classes ────────────────────────────────────────────────────────
 
-    fun getClassList(storeId: Int): List<GroupClass> {
-        val resp = client.request<ClassListData>(
-            "GET", "/member/v1/class/list",
-            params = mapOf("storeId" to storeId),
-            skipToken = true,
-        )
-        val now = System.currentTimeMillis() / 1000
-        val cutoff = now - 10 * 60
-        return (resp.data?.list ?: emptyList())
-            .filter { it.startTime > cutoff }
-            .sortedBy { it.startTime }
-            .map { dto ->
-                val coach = dto.coach?.let { c -> Coach(c.id, c.name, c.title ?: "", storeId) }
+    fun getClassList(storeId: Int, forceRefresh: Boolean = false): List<GroupClass> {
+        val ctx = context
+        val all: List<GroupClass>
+
+        val cached = if (!forceRefresh && ctx != null) ClassListCache.load(ctx, storeId) else null
+        if (cached != null) {
+            all = cached
+        } else {
+            val resp = client.request<ClassListData>(
+                "GET", "/member/v1/class/list",
+                params = mapOf("storeId" to storeId),
+                skipToken = true,
+            )
+            all = (resp.data?.list ?: emptyList()).map { dto ->
+                fun coachOrNull(c: com.ssj.geekfight.api.dto.CoachDto?) =
+                    if (c != null && c.id != 0) Coach(c.id, c.name, c.title ?: "", storeId) else null
+                val coaches = listOfNotNull(
+                    coachOrNull(dto.coach),
+                    coachOrNull(dto.sndCoach),
+                    coachOrNull(dto.thdCoach),
+                )
                 GroupClass(
                     id = dto.id,
                     courseName = dto.courseName,
@@ -60,13 +82,18 @@ class BookingApi(private val client: FightGeekClient) {
                     duration = dto.duration,
                     storeId = storeId,
                     storeName = dto.storeName ?: "",
-                    coach = coach,
+                    coaches = coaches,
                     capacity = dto.capacity,
                     bookingNum = dto.bookingNum,
                     customerType = dto.customerType,
                     myBooking = dto.myBooking,
                 )
             }
+            if (ctx != null) ClassListCache.save(ctx, storeId, all)
+        }
+
+        val cutoff = System.currentTimeMillis() / 1000 - 10 * 60
+        return all.filter { it.startTime > cutoff }.sortedBy { it.startTime }
     }
 
     /**
@@ -144,15 +171,18 @@ class BookingApi(private val client: FightGeekClient) {
                 "coachId" to coachId,
             ),
         )
-        return (resp.data?.list ?: emptyList()).map { dto ->
-            val startTime = parseSlotStartTime(date, dto.timeStr)
-            PtSlot(
-                startTime = startTime,
-                endTime = startTime + 3600,
-                timeStr = dto.timeStr,
-                available = dto.available,
-            )
-        }
+        val slots = (resp.data?.list ?: emptyList())
+            .filter { isOnTheHour(it.timeStr) }
+            .map { dto ->
+                val startTime = parseSlotStartTime(date, dto.timeStr)
+                PtSlot(
+                    startTime = startTime,
+                    endTime = startTime + 3600,
+                    timeStr = dto.timeStr,
+                    available = dto.available,
+                )
+            }
+        return slots
     }
 
     fun ptBooking(courseId: Int, startTime: Long, coachId: Int, storeId: Int, cardId: Int?): PtBookResult {
@@ -247,12 +277,69 @@ class BookingApi(private val client: FightGeekClient) {
         return resp.data?.qrCodeBase64 ?: ""
     }
 
+    // ── Coach Schedule ───────────────────────────────────────────────────────
+
+    /** Fetch all stores across all regions. */
+    fun getAllStores(): List<Store> {
+        val regions = getRegionalList()
+        return regions.flatMap { region ->
+            try { getStoreList(region.id) } catch (_: Exception) { emptyList() }
+        }.distinctBy { it.id }
+    }
+
+    /**
+     * Find which store(s) a coach teaches at each day, by querying all stores' class lists
+     * and filtering for classes involving this coach.
+     */
+    fun getCoachSchedule(coachId: Int, forceRefresh: Boolean = false): List<CoachScheduleDay> {
+        val stores = getAllStores()
+        val zone = ZoneId.systemDefault()
+        val dateFmt = DateTimeFormatter.ofPattern("M月d日 EEE", java.util.Locale.CHINESE)
+        val timeFmt = DateTimeFormatter.ofPattern("HH:mm")
+
+        fun Long.fmtTime(): String =
+            Instant.ofEpochSecond(this).atZone(zone).format(timeFmt)
+
+        val entries = stores.flatMap { store ->
+            try {
+                getClassList(store.id, forceRefresh)
+                    .filter { cls -> cls.coaches.any { it.id == coachId } }
+                    .map { cls ->
+                        val date = Instant.ofEpochSecond(cls.startTime).atZone(zone).toLocalDate()
+                        date to CoachScheduleEntry(
+                            time = "${cls.startTime.fmtTime()} – ${cls.endTime.fmtTime()}",
+                            courseName = cls.courseName,
+                            storeName = store.name,
+                            storeId = store.id,
+                            startEpoch = cls.startTime,
+                        )
+                    }
+            } catch (_: Exception) { emptyList() }
+        }
+
+        return entries
+            .groupBy { (date, _) -> date }
+            .entries
+            .sortedBy { it.key }
+            .map { (date, dayEntries) ->
+                CoachScheduleDay(
+                    date = date.format(dateFmt),
+                    entries = dayEntries.map { it.second }.sortedBy { it.time },
+                )
+            }
+    }
+
     // ── Helpers ───────────────────────────────────────────────────────────────
 
     private fun monthStartUnix(year: Int, month: Int): Long {
         return LocalDate.of(year, month, 1)
             .atStartOfDay(ZoneId.systemDefault())
             .toEpochSecond()
+    }
+
+    private fun isOnTheHour(timeStr: String): Boolean {
+        val match = Regex("""(\d{1,2}):(\d{2})""").find(timeStr) ?: return true
+        return match.groupValues[2] == "00"
     }
 
     private fun parseSlotStartTime(dateUnix: Long, timeStr: String): Long {

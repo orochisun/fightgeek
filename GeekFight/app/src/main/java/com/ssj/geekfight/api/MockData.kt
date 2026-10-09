@@ -62,32 +62,32 @@ object MockData {
             GroupClass(
                 id = 20001, courseName = "MMA综合格斗", startTime = todayAt(10, 0),
                 endTime = todayAt(11, 0), duration = 60, storeId = storeId,
-                storeName = storeName, coach = coach, capacity = 15, bookingNum = 8, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coach), capacity = 15, bookingNum = 8, customerType = 1, myBooking = 0,
             ),
             GroupClass(
                 id = 20002, courseName = "泰拳入门", startTime = todayAt(12, 0),
                 endTime = todayAt(13, 0), duration = 60, storeId = storeId,
-                storeName = storeName, coach = coach, capacity = 12, bookingNum = 12, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coach), capacity = 12, bookingNum = 12, customerType = 1, myBooking = 0,
             ),
             GroupClass(
                 id = 20003, courseName = "搏击体能", startTime = todayAt(14, 30),
                 endTime = todayAt(15, 30), duration = 60, storeId = storeId,
-                storeName = storeName, coach = coach, capacity = 20, bookingNum = 5, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coach), capacity = 20, bookingNum = 5, customerType = 1, myBooking = 0,
             ),
             GroupClass(
                 id = 20004, courseName = "巴西柔术基础", startTime = daysFromNow(1, 10),
                 endTime = daysFromNow(1, 11, 30), duration = 90, storeId = storeId,
-                storeName = storeName, coach = coaches.getOrNull(2), capacity = 10, bookingNum = 3, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coaches.getOrNull(2)), capacity = 10, bookingNum = 3, customerType = 1, myBooking = 0,
             ),
             GroupClass(
                 id = 20005, courseName = "MMA综合格斗", startTime = daysFromNow(1, 19),
                 endTime = daysFromNow(1, 20), duration = 60, storeId = storeId,
-                storeName = storeName, coach = coach, capacity = 15, bookingNum = 10, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coach), capacity = 15, bookingNum = 10, customerType = 1, myBooking = 0,
             ),
             GroupClass(
                 id = 20006, courseName = "搏击体能", startTime = daysFromNow(2, 9),
                 endTime = daysFromNow(2, 10), duration = 60, storeId = storeId,
-                storeName = storeName, coach = coach, capacity = 20, bookingNum = 0, customerType = 1, myBooking = 0,
+                storeName = storeName, coaches = listOfNotNull(coach), capacity = 20, bookingNum = 0, customerType = 1, myBooking = 0,
             ),
         )
     }

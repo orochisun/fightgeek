@@ -1,0 +1,822 @@
+
+
+===== PAGE 1 =====
+Fighting cavities: 
+Securing Android 
+Bluetooth by Red 
+Teaming
+2025-05-17
+
+
+===== PAGE 2 =====
+Jeong Wook (Matt) Oh (Offensive 
+Security Engineer)
+Xuan Xing (Android Red Team Manager)
+Rishika Hooda (Offensive Security TPM)
+Contributors - Special call out to Bluetooth 
+Feature Team (Brian Delwiche)
+Speakers
+Xuan XingJeong Wook 
+(Matt) Oh
+Rishika Hooda
+
+===== PAGE 3 =====
+Android Red Team
+Protect the Android ecosystem through 
+offensive security.
+Mission
+
+===== PAGE 4 =====
+● Overview
+○ Bluetooth Protocol Stack
+○ Threat Modelling 
+● Methodology
+○ Code Reviews
+○ Fuzzing/CodeQL/KLEE
+● Bugs and Exploits
+○ GATT Integer Overflow RCE
+○ AVDT Type Confusion RCE
+● Mitigations & Improvements
+● Q&A
+Agenda
+
+
+===== PAGE 5 =====
+Proprietary + Conﬁdential
+Overview
+
+
+===== PAGE 6 =====
+Bluetooth: A Convenient Target in Our Connected World
+
+
+===== PAGE 7 =====
+Bluetooth Protocol Stack (Attacker’s view)
+Host Protocol Layer L2CAP
+GAP SMP SDPGATT
+(E)ATT
+Bluetooth Application Layer
+Transport
+protocols
+Profiles
+AVDTP AVCTP
+A2DP AVRCP HFP MAP PBAP
+OBEX
+PAN
+RFCOMM
+—————————— HCI ——————————
+Bluetooth Java services
+A2DP AVRCP HFP MAP PBAP PAN
+———— JNI ————
+—————————— AIDL ——————————
+Android APIs
+android.bluetooth
+[System partition]
+Bluetooth stack process
+com.android.bluetooth
+[Vendor Partition]
+Bluetooth HAL process
+com.android.hardware.bluetooth
+Controller Protocol Layers
+User Apps
+
+
+===== PAGE 8 =====
+Threat Model
+● Attacker sending malformed packets, 
+resulting in
+● DoS
+● Information disclosure
+● Code execution
+● Using privileges of the Bluetooth 
+process to affect other parts of 
+Android OS
+● Both pre-pairing and post-pairing attacks 
+considered
+Firmware
+Android 
+OS
+Bluetooth
+
+
+===== PAGE 9 =====
+High Level Impact
+● Discovered multiple Critical/High vulnerabilities
+○ All reported Vulns are fixed & patches are delivered via ASB(Android security bulletin)
+● Manual code review uncovered bugs that are hard to find with fuzzing
+● Experimented KLEE for symbolic execution and found interesting bugs
+● Open-source contributions
+○ CodeQL, Ubertooth, Wireshark, Scapy and (in-progress) Frida
+
+===== PAGE 10 =====
+Proprietary + Conﬁdential
+Methodology
+
+
+===== PAGE 11 =====
+Manual Code Review
+● Still the most effective way to discovery high 
+complexity/impactful bugs
+○ ~50% of total discoveries
+○ Including both bugs we exploited 
+● Focusing areas hard to automate
+○ Logic bugs
+○ E2E scenarios involving many components
+○ Race conditions
+● Limitations
+○ Needs domain knowledge
+○ One time effort
+○ Not scalable
+Manual code 
+review
+
+
+===== PAGE 12 =====
+Dynamic Analysis (Fuzzing)
+● Scalable, long lasting effect for
+○ New issue discovery
+○ Regression detection
+● New fuzzers created to cover the following areas:
+○ SDP, SMP, GATT, BNEP, AVRC, L2CAP
+● Existing fuzzers improved to:
+○ Support host based fuzzing
+● All fuzzers running continuously in Google’s internal 
+fuzzing infrastructure
+Fuzzing
+
+
+===== PAGE 13 =====
+Dynamic Analysis (Fuzzing)
+Name Coverage* % Discovery
+avrc/avct 50% 1
+bnep 61% 1
+gatt 54% 7
+smp 50% 1
+sdp 62% 5
+l2cap 35% 3
+Fuzzing
+
+
+===== PAGE 14 =====
+Static Analysis
+● CodeQL
+○ Variant/pattern analysis, for example, OOB array 
+accesses
+○ Found new issues, as well as re-found GATT bug 
+exploited in this slides
+○ 2 bugs in the CodeQL tool reported and fixed 
+● KLEE
+○ Formal verification, an alternative to CBMC
+○ Experimented on l2cap, sdp and btm for symbolic 
+execution
+○ Found 6 likely OOB read bugs in btm, re-produced 
+another issue
+○ Challenges: invasive build changes, path explosion, 
+function pointers
+Static analysis
+
+
+===== PAGE 15 =====
+Proprietary + Conﬁdential
+Bugs and Exploits
+
+
+===== PAGE 16 =====
+Proprietary + Need-to-know
+Bluetooth: Summary of Findings
+Scope Component Critical High
+Application Profiles A2DP, AVRC, HFP, MAP, PBAP, PAN CVE-2023-40078
+Transport protocols AVDT, AVCT, OBEX
+ CVE-2025-22435
+Host: other GAP, ATT/GATT, SMP, RFCOMM, 
+SDP
+CVE-2023-35673 
+CVE-2023-40129 
+CVE-2023-35681 
+CVE-2023-35658 
+CVE-2023-21273
+CVE-2024-0045
+Core stack 
+implementation
+BTA, BTM, BTIF, BTU, BNEP
+CVE-2024-0016
+CVE-2023-40090
+CVE-2023-40087
+
+===== PAGE 17 =====
+Proprietary + Conﬁdential
+GATT Integer Overflow RCE
+
+
+===== PAGE 18 =====
+Proprietary + Need-to-know
+BLE Protocol Stack
+● BLE (Bluetooth Low Energy)
+○ Bluetooth protocol variation to have minimal 
+power consumption to transmit small 
+amounts of data over short distances
+● EATT (Enhanced Attribute Protocol)
+○ Upgraded version of the standard Attribute 
+Protocol (ATT)
+■ Concurrent Transactions/Improved 
+Responsiveness & Throughput
+○ MTU Flexibility: EATT decouples the ATT 
+Maximum Transmission Unit (MTU) from the 
+L2CAP MTU, offering more flexibility
+● GATT (Generic Attribute Profile)
+○ Builds directly on top of ATT or EATT
+○ Services and Characteristics
+SMP
+L2CAP
+LL
+LE PHY
+GATT
+ATT EATTHost 
+Protocol
+Layers
+Controller
+Protocol
+Layers
+HCI
+GAP
+Application Layer
+
+===== PAGE 19 =====
+Proprietary + Need-to-know
+GATT Vulnerability Details
+● GATT uses EATT
+○ The EATT’s TX MTU is set by BLE peer that trigger uint16_t integer overflow/underflow
+● Impact
+○ Proximal Code Execution as Bluetooth Service
+● Bugs & Patches
+○ CVE-2023-35681 - gatts_process_* functions OOB write (Patch)
+○ CVE-2023-35673 - build_read_multi_rsp integer overflow (Patch)
+○ CVE-2023-40129 - build_read_multi_rsp underflow lead to OOB Write (Patch)
+● Current Status: All vulnerabilities are remediated & patches have been delivered via ASB
+
+===== PAGE 20 =====
+build_read_multi_rsp Overflow (CVE-2023-35673)
+Attacker
+ Target
+<-- BLE -->
+EATT Connection →
+L2CAP_CMD_CREDIT_BASED_CONN_REQ
+  (mtu: 0xffeb)
+void eatt_l2cap_reconfig_completed(const RawAddress& bda, uint16_t 
+lcid,
+                                     bool is_local_cfg, 
+                                     tL2CAP_LE_CFG_INFO* p_cfg) { 
+…
+    EattChannel* channel = find_channel_by_cid(bda, lcid);
+…
+      channel->tx_mtu_ = p_cfg->mtu; <--- channel->tx_mtu_ is set by 
+the attacker (0xffeb)
+
+===== PAGE 21 =====
+build_read_multi_rsp Overflow (CVE-2023-35673)
+Attacker
+ Target
+<-- BLE -->
+GATT Client Request →
+GATT_REQ_READ_MULTI (0x0E)
+EATT Connection →
+L2CAP_CMD_CREDIT_BASED_CONN_REQ
+  (mtu: 0xffeb)
+void gatt_server_handle_client_req(tGATT_TCB& tcb, uint16_t cid,
+                                   uint8_t op_code, uint16_t len, 
+                                   uint8_t* p_data) { 
+...
+      case GATT_REQ_READ_MULTI:
+      case GATT_REQ_READ_MULTI_VAR:
+        gatt_process_read_multi_req(tcb, cid, op_code, len, p_data);
+...
+void gatt_process_read_multi_req(tGATT_TCB& tcb, uint16_t cid, uint8_t op_code,
+                                 uint16_t len, uint8_t* p_data) { 
+  ...
+  if (err == GATT_SUCCESS) {
+    trans_id = gatt_sr_enqueue_cmd(tcb, cid, op_code, multi_req->handles[0]); ← 
+Read Request is queued
+
+
+===== PAGE 22 =====
+build_read_multi_rsp Overflow (CVE-2023-35673)
+Attacker
+ Target
+<-- BLE -->
+GATT Client Request →
+GATT_REQ_READ_MULTI (0x0E)
+EATT Connection →
+L2CAP_CMD_CREDIT_BASED_CONN_REQ
+  (mtu: 0xffeb)
+←GATT Response Build
+build_read_multi_rsp (Integer 
+Overﬂow) called from 
+gatt_process_read_multi_req
+static void build_read_multi_rsp(tGATT_SR_CMD* p_cmd, uint16_t mtu) {
+  uint16_t ii, total_len, len;
+...
+  len = sizeof(BT_HDR) + L2CAP_MIN_OFFSET + mtu; <--- Integer Overflow
+  BT_HDR* p_buf = (BT_HDR*)osi_calloc(len);
+  p_buf->offset = L2CAP_MIN_OFFSET;
+  p = (uint8_t*)(p_buf + 1) + p_buf->offset;
+  ...
+  for (ii = 0; ii < p_cmd->multi_req.num_handles; ii++) {
+     ... 
+     total_len = (p_buf->len + p_rsp->attr_value.len);
+     if (total_len > mtu) {
+       ... 
+     } else { 
+       len = p_rsp->attr_value.len;
+     } 
+        ... 
+        memcpy(p, p_rsp->attr_value.value, len); <--- Heap Overflow
+Attacker 
+Controllable 
+(0xffeb)
+
+===== PAGE 23 =====
+gatts_process_* Integer Overflow (CVE-2023-35681)
+uint16_t gatt_tcb_get_payload_size_tx(tGATT_TCB& tcb, uint16_t cid) {
+  if (!tcb.eatt || (cid == tcb.att_lcid)) return tcb.payload_size;
+  EattChannel* channel =
+      EattExtension::GetInstance()->FindEattChannelByCid(tcb.peer_bda, cid);
+  return channel->tx_mtu_; <--- Attacker Controllable (64 ~ 0xffff)
+}
+void gatts_process_primary_service_req(tGATT_TCB& tcb, uint16_t cid,
+                                       uint8_t op_code, uint16_t len, 
+                                       uint8_t* p_data) { 
+  ...
+  
+  uint16_t payload_size = gatt_tcb_get_payload_size_tx(tcb, cid);
+  uint16_t msg_len = 
+      (uint16_t)(sizeof(BT_HDR) + payload_size + L2CAP_MIN_OFFSET); <--- 
+Integer overflow
+  BT_HDR* p_msg = (BT_HDR*)osi_calloc(msg_len); ← Heap allocation with 
+small msg_len size
+Attacker
+ Target
+<-- BLE -->
+GATT Client Request →
+GATT_REQ_READ_BY_GRP_TYPE (0x10)
+EATT Connection →
+L2CAP_CMD_CREDIT_BASED_CONN_REQ
+  (mtu: 0xffeb)
+←GATT Handler
+gatts_process_primary_service_req 
+(Integer Overﬂow)
+
+===== PAGE 24 =====
+Scudo: how it works
+scudo_header
+(0x10)
+Allocation 
+(0x10)
+scudo_header
+(0x10)
+Allocation 
+(0x10)
+Reserved 
+bytes (13)
+scudo checksum
+overwrite
+1. Small memory allocation due 
+to integer overflow
+3. Attacker has full control over 
+overwritten data bytes and 
+length
+● There were some chances where 
+Scudo could have been bypassed 
+through gap in the memory fill, but it 
+is missed by just 2 bytes (which is CRC 
+checksum location)
+○ Scudo can be ineffective if 
+non-linear overwrite is possible
+○ But, we were unlucky in this 
+case
+BT_HDR 
+(8) Heap Overflow
+2. BT_HDR memory is 
+allocated with reserved 
+space which is never 
+written
+Scudo is a dynamic user-mode memory allocator, or 
+heap allocator, designed to be resilient against 
+heap-related vulnerabilities (such as heap-based buffer 
+overflow, use after free, and double free) while 
+maintaining performance.
+
+===== PAGE 25 =====
+Proprietary + Need-to-know
+● Scudo kicks in only when scudo_free is called
+○ scudo_free trigger scudo_header checksum error
+● Minimize scudo_free call 
+○ Most of scudo_free during exploitation is triggered by disconnection of the connection
+○ Maintain the attack session as long as possible
+■ This will removes most of scudo_free calls (90% ~)
+Scudo Bypass: Minimize scudo_free
+
+===== PAGE 26 =====
+Proprietary + Need-to-know
+● Even though we hit scudo_free, the Bluetooth service will restart
+○ The restarted process has same memory layout until reboot
+○ With restart GATT components run automatically
+● For example, BlueFrag reported 30-50% success rate, but it was enough to achieve RCE because retry 
+attempt is possible with same memory layout
+Scudo Bypass: retry
+
+===== PAGE 27 =====
+Proprietary + Need-to-know
+● The vulnerability allows us to allocate 0x10 ~ 0x20 bytes of memory
+○ Same size classes are allocated in proximity of each other
+○ The 0x10 allocation (0x20 including scudo_header) class: smallest memory allocation class 
+with following objects allocations
+■ vptr (pointer to vtable): our favorite
+● Overwriting this value gives us full remote code execution
+■ semaphore_t: something to avoid
+● Overwriting this value gives no effect, deadlock or scudo error
+■ list_node_t (p_cmd->multi_rsp_q): useful
+● Overwriting this value gives scudo error or remote OOB Read
+Scudo memory allocation behavior
+
+===== PAGE 28 =====
+Proprietary + Need-to-know
+● OOB Write issue could have 
+used to corrupt list_node_t 
+object which has a pointer to 
+tGATTS_RSP that is sent to the 
+attacker
+● It can read arbitrary memory 
+address with specific patterns
+○ This can be used for ASLR 
+bypass
+○ It needs additional 
+research to use it for real 
+world ASLR bypass
+ASLR Bypass: list_node_t (p_cmd->multi_rsp_q)
+static void build_read_multi_rsp(tGATT_SR_CMD* p_cmd, 
+uint16_t mtu) {
+...
+    tGATTS_RSP* p_rsp = NULL;
+ 
+...
+      if (node != list_end(list)) p_rsp = 
+(tGATTS_RSP*)list_node(node); ← list_node_t can be 
+corrupt and attacker can control p_rsp address
+...
+        memcpy(p, p_rsp->attr_value.value, len); ← 
+Attacker can read arbitrary memory address
+
+===== PAGE 29 =====
+Proprietary + Need-to-know
+● Increase the success rate
+○ Corrupting multiple objects in same session
+○ Multiple exploit attempts in same session
+○ Minimize corruption footprint: 2 (sizeof(BT_HDR)) + 8 (scudo_header padding) + 8 (vptr size)
+● Race
+○ By sending multiple malicious requests, the success rate for vptr corruption goes up to 60-70%
+Scudo Bypass: scudo_free vs RCE race
+
+===== PAGE 30 =====
+Proprietary + Need-to-know
+Scudo Header 
+Corruption
+Fake vtable
+… …
+Corruption #1 Corruption #2
+Code Execution
+Corruption #3
+abort(...)
+free(...)
+scudo_free(...)
+Fake list_node_t
+Fake p_rsp
+Memory Contents
+Leak
+semaphore_t
+list_node_t
+vptr
+free chunk
+Minimize
+free() calls by
+connection 
+maintenance (90% 
+free call reduction)
+Support for 
+multiple 
+object types
+
+===== PAGE 31 =====
+Attack Chain: GATT Integer Overflow
+ * Device pairing is used for the demo, but MITM with no pairing scenario is possible as the 
+bug happens pre-auth phase
+
+===== PAGE 32 =====
+Demo: GATT Integer Overflow
+https://youtu.be/E1QFl42_HhU
+
+===== PAGE 33 =====
+Proprietary + Conﬁdential
+AVDT Type Confusion RCE
+
+===== PAGE 34 =====
+Proprietary + Need-to-know
+AVDTP
+● AVDTP (Audio/Video Distribution Transport Protocol)
+○ Underlying transport mechanism for high-quality audio/video.
+○ Operates above the L2CAP (Logical Link Control and Adaptation Protocol) layer
+○ Key Responsibilities:
+■ Stream Negotiation: For the audio/video stream - the codec to be used (like SBC, AAC, 
+aptX) and its configuration
+■ Connection Management: Setup and teardown of the dedicated channels
+■ Multiplexing: Multiple audio/video streams to be managed over a single L2CAP link
+■ Data Transport: Actual transfer of the encoded audio or video packets
+
+===== PAGE 35 =====
+Proprietary + Need-to-know
+void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) { ... p_buf = avdt_msg_asmbl(p_ccb, p_buf);  ...  p = (uint8_t*)(p_buf + 1) + p_buf->offset;  /* parse the message header */  AVDT_MSG_PRS_HDR(p, label, pkt_type, msg_type);   ...    /* get and verify signal */    AVDT_MSG_PRS_SIG(p, sig);    ...     /* set up to parse message */    if (( msg_type == AVDT_MSG_TYPE_RSP) && (sig == AVDT_SIG_DISCOVER)) {      /* parse discover rsp message to struct supplied by app */      msg.discover_rsp.p_sep_info = (tAVDT_SEP_INFO*)p_ccb->p_proc_data;      msg.discover_rsp.num_seps = p_ccb->proc_param;    } else if ((msg_type == AVDT_MSG_TYPE_RSP) &&               (( sig == AVDT_SIG_GETCAP) || (sig == AVDT_SIG_GET_ALLCAP))) {      /* parse discover rsp message to struct supplied by app */      msg.svccap.p_cfg = (AvdtpSepConfig*)p_ccb->p_proc_data;
+p_ccb->p_proc_data  can point to 
+AVDT_SIG_DISCOVER/AVDT_SIG_GET_ALLC
+AP/AVDT_SIG_GETCAP custom data. If sig is 
+fabricated, it can typecast tAVDT_SEP_INFO* 
+to wrong type (AvdtpSepConfig*).
+CVE-2025-22435 - avdt_msg_ind type confusion
+Sig is attacker 
+controllable 
+Type Confusion
+Attacker 
+Packet
+● CVE-2025-22435 - avdt_msg_ind type confusion (Patch)
+○ Type confusion that can lead to heap overflow that leads to remote code execution (proximal)
+
+===== PAGE 36 =====
+○ Generic mitigations doesn’t work well over type confusion case
+○ MTE can mitigate exploitation (Pixel 8+)
+■ Armv9 introduced the Arm Memory Tagging Extension (MTE), a hardware extension 
+that allows you to catch use-after-free and buffer-overflow bugs in your native 
+code.
+Fix & Mitigation
+void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
+        ... 
+        avdt_msg_send_grej(p_ccb, sig, &msg);
+       } 
+     } 
++
++    /* validate reject/response against cached sig */
++    if (((msg_type == AVDT_MSG_TYPE_RSP) || (msg_type == AVDT_MSG_TYPE_REJ)) &&
++        (p_ccb->p_curr_cmd == nullptr || p_ccb->p_curr_cmd->event != sig)) {
++      AVDT_TRACE_WARNING(
++          "Dropping msg with mismatched sig; sig=%d", sig);
++      ok = false; 
++    } 
+   } 
+ 
+   if (ok && !gen_rej) {
+
+===== PAGE 37 =====
+void* p_proc_data
+uint8_t proc_param  = 32
+Attacker
+ Target
+Discovery Request
+AvdtpCcb* p_ccb
+ <...>
+128 118
+peer_cap 8 bytes
+tBTA_AV_SCB
+sep_info
+<...>
+<...>
+← Stream Setup →
+struct tBTA_AV_SCB {
+  ...
+  AvdtpSepConfig peer_cap;
+  list_t* a2dp_list;
+  ...
+  tAVDT_SEP_INFO sep_info[BTA_AV_NUM_SEPS];
+  ...
+}
+← AVDT_SIG_DISCOVER REQ
+a2dp_list
+
+===== PAGE 38 =====
+if ((msg_type == AVDT_MSG_TYPE_RSP) && (sig == AVDT_SIG_DISCOVER)) {
+    msg.discover_rsp.p_sep_info = (tAVDT_SEP_INFO*)p_ccb->p_proc_data; 
+    msg.discover_rsp.num_seps = p_ccb->proc_param;                     
+}
+// Call avdt_msg_prs_discover_rsp(&msg, ...)
+(*avdt_msg_prs_rsp[AVDT_SIG_DISCOVER])(&msg, p, p_buf->len);
+Attacker
+ Target
+void* p_proc_data
+uint8_t proc_param
+= 32
+Discovery Response
+AvdtpCcb* p_ccb
+ = 32
+<...>
+128 118
+peer_cap 8 bytes
+tBTA_AV_SCB
+sep_info
+<...>
+<...>
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+← Stream Setup →
+← AVDT_SIG_DISCOVER REQ
+     AVDT_SIG_DISCOVER RSP →
+a2dp_list
+
+===== PAGE 39 =====
+Attacker
+ Target
+void* p_proc_data
+uint8_t proc_param unset (32)
+XXXXXX  XXXXXXX XXXXXXX  XXXXXX 
+XXXXXX  XXXXXXX XXXXXXX  XXXXXX 
+XXXXXX  XXXXXXX XXXXXXX  XXXXXX 
+XXXXXX  XXXXXXX XXXXXXX  XXXXXX 
+Get Capability Request
+AvdtpCcb* p_ccb
+XXXXXX
+XXXXXX
+<...>
+128 118
+peer_cap 8 bytes
+tBTA_AV_SCB
+sep_info
+<...>
+<...>
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+← Stream Setup →
+← AVDT_SIG_DISCOVER REQ
+     AVDT_SIG_DISCOVER RSP →
+← AVDT_SIG_GET_CAP REQ
+struct tBTA_AV_SCB {
+  ...
+  AvdtpSepConfig peer_cap;
+  list_t* a2dp_list;
+  ...
+  tAVDT_SEP_INFO sep_info[BTA_AV_NUM_SEPS];
+  ...
+}
+a2dp_list
+
+===== PAGE 40 =====
+if ((msg_type == AVDT_MSG_TYPE_RSP) && (sig == AVDT_SIG_DISCOVER)) {
+    msg.discover_rsp.p_sep_info = (tAVDT_SEP_INFO*)p_ccb->p_proc_data; 
+    msg.discover_rsp.num_seps = p_ccb->proc_param;                  
+}
+// Call avdt_msg_prs_discover_rsp(&msg, ...)
+(*avdt_msg_prs_rsp[AVDT_SIG_DISCOVER])(&msg, p, p_buf->len);
+Attacker
+ Target
+← AVDT_SIG_DISCOVER REQ
+     AVDT_SIG_DISCOVER RSP →
+← AVDT_SIG_GET_CAP REQ
+     AVDT_SIG_DISCOVER RSP →
+void* p_proc_data
+uint8_t proc_param
+unset (32)
+Discovery Response
+AvdtpCcb* p_ccb
+unset (32)
+← Stream Setup →
+Type Confusion
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+<...>
+<...>
+<...>
+128 118
+peer_cap
+a2dp_list
+tBTA_AV_SCB
+sep_info
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+XXXXXX XXXXXX XXXXXX XXXXXX
+The p_ccb->p_proc_data 
+(peer_cap) is casted into 
+p_sep_info
+
+===== PAGE 41 =====
+Overwrite a2dp_list
+1. Heap spray for predictable addresses to bypass ASLR
+2. system(...) gadget
+a. Fake list structure with free_cb pointing to system
+b. list->free_cb(head->node->data)
+3. Set a2dp_list = 0x4000020000
+4. Send packets with the fake structure so we get lucky and 
+it puts our payload at this address
+5. When freeing a node, our list at 0x4000020000 will be 
+used, and our free_cb (system) will be called
+struct list_t {
+  list_node_t* head;
+  list_node_t* tail;
+  size_t length;
+  list_free_cb free_cb;
+  const allocator_t* allocator;
+};
+struct list_node_t {
+  struct list_node_t* next;
+  void* data;
+};
+list_t* a2dp_list
+
+===== PAGE 42 =====
+Heap Spray Data
+0x<...>00 head      = 0x<...>28
+0x<...>08 tail      = 'AAAAAAAA'
+0x<...>10 length    = 1
+0x<...>18 free_cb   = system
+0x<...>20 allocator = 'BBBBBBBB'
+0x<...>28 next      = 'CCCCCCCC'
+0x<...>30 data      = 0x<...>38
+0x<...>38 "nc -l -p 1337 sh"
+Heap spray object
+struct list_t {
+  list_node_t* head;
+  list_node_t* tail;
+  size_t length;
+  list_free_cb free_cb;
+  const allocator_t* allocator;
+};
+struct list_node_t {
+  struct list_node_t* next;
+  void* data;
+};
+list_t* a2dp_list
+
+===== PAGE 43 =====
+Attack Chain
+1 Device is either already paired or expected to be paired with
+2 Fair assumption given many "OOB Read" bugs discovered
+3 Removed one free call to achieve
+
+
+===== PAGE 44 =====
+Demo: AVDT Type Confusion Exploit
+https://youtu.be/E8ZkWkntcIg
+
+===== PAGE 45 =====
+Proprietary + Conﬁdential
+Mitigations & Future Improvements
+
+
+===== PAGE 46 =====
+Proprietary + Need-to-know
+Remediation Challenges
+● Most BT security issues are straightforward, but…
+○ Memory safety or spec compliance?
+● Biggest challenge is often reproducing the issue
+● Use a proof of concept where possible, otherwise 
+time-consuming interop tests may be required
+● Straightforward fixes can have less straightforward 
+consequences – testing is essential
+
+
+===== PAGE 47 =====
+Proprietary + Need-to-know
+Mitigations
+● Basic memory safety: check bounds, etc.
+● For the AVDT type confusion issue, cache the type and 
+compare
+● General mitigations
+○ Where possible, bake checks into higher-level 
+constructs
+○ Use language idioms or well-tested libraries to move 
+data rather than rolling our own
+
+
+===== PAGE 48 =====
+Proprietary + Need-to-know
+Hardening Efforts & Path Forward
+● Proactively finding vulnerabilities via
+○ Static analysis
+○ Red Teaming Exercises
+○ Better interop tests, run regularly
+○ Fuzzing
+○ Many of these issues are effectively 
+regressions
+● Refactors for better memory safety, 
+where possible
+○ More compiler mitigations
+○ Safer languages, or safer C++ types
+
+
+===== PAGE 49 =====
+Proprietary + Conﬁdential
+Questions? Read our blogs!

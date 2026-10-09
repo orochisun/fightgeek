@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Chrome Widget Activation Close Child</title>
+<script>
+  console.log("child-loaded");
+  setTimeout(() => {
+    console.log("child-close-timeout-0");
+    window.close();
+  }, 0);
+</script>
+<body>Child closes itself after load.</body>

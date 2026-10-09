@@ -1,0 +1,90 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Chrome Widget Activation Direct Repro</title>
+<style>
+  body {
+    font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 32px;
+    color: #202124;
+  }
+  pre {
+    padding: 12px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    white-space: pre-wrap;
+  }
+</style>
+<h1>Chrome Widget Activation Direct Repro</h1>
+<p>This page performs one normal popup focus/close sequence automatically.</p>
+<pre id="log"></pre>
+<script>
+const logEl = document.getElementById('log');
+function log(message) {
+  const line = `${new Date().toISOString()} ${message}`;
+  logEl.textContent += line + '\n';
+}
+
+function childDocument() {
+  return `<!doctype html>
+<meta charset="utf-8">
+<title>Activation child</title>
+<body style="font:14px system-ui;margin:24px">
+<input autofocus value="child popup" style="font-size:18px;width:260px">
+<script>
+let closed = false;
+function childLog(message) {
+  try { opener.postMessage({kind: 'child-log', message}, '*'); } catch (e) {}
+}
+window.addEventListener('focus', () => {
+  childLog('child focus event');
+  if (!closed) {
+    closed = true;
+    setTimeout(() => {
+      childLog('child closing itself after focus');
+      window.close();
+    }, 0);
+  }
+});
+window.addEventListener('load', () => {
+  childLog('child loaded');
+  setTimeout(() => window.focus(), 0);
+});
+<\/script>`;
+}
+
+window.addEventListener('message', event => {
+  if (event.data && event.data.kind === 'child-log') {
+    log(event.data.message);
+  }
+});
+
+window.addEventListener('load', () => {
+  log('parent loaded');
+  const child = window.open('', 'activation_child',
+      'popup,width=420,height=260,left=240,top=180');
+  if (!child) {
+    log('popup blocked');
+    document.title = 'direct repro popup blocked';
+    return;
+  }
+
+  child.document.open();
+  child.document.write(childDocument());
+  child.document.close();
+
+  setTimeout(() => {
+    log('parent requests child focus');
+    child.focus();
+  }, 100);
+
+  setTimeout(() => {
+    log('parent refocuses itself once');
+    window.focus();
+  }, 250);
+
+  setTimeout(() => {
+    log('sequence complete');
+    document.title = 'direct repro complete';
+  }, 750);
+});
+</script>

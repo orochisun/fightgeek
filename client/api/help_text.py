@@ -8,6 +8,7 @@ EPILOG = """
   python3 main.py regions
   python3 main.py store-list --regional-id 1101
   python3 main.py --token "$TOKEN" pt-coaches
+  python3 main.py --token "$TOKEN" pt-coaches --all  （所有门店的教练）
 
 【私教预约】（默认 store=1101005 coach=163 course=5）
   python3 main.py --token "$TOKEN" pt-course

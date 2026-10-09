@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Chrome WebAuthn Abort Widget Repro</title>
+<button id="start" style="font:16px system-ui;margin:20px;padding:10px 16px">
+  Start WebAuthn
+</button>
+<pre id="log"></pre>
+<script>
+const logEl = document.getElementById('log');
+const startButton = document.getElementById('start');
+function log(message) {
+  logEl.textContent += `${new Date().toISOString()} ${message}\n`;
+}
+
+async function run() {
+  if (!window.PublicKeyCredential || !navigator.credentials) {
+    log('WebAuthn is unavailable');
+    return;
+  }
+
+  const controller = new AbortController();
+  const challenge = new Uint8Array(32);
+  const userId = new Uint8Array(16);
+  crypto.getRandomValues(challenge);
+  crypto.getRandomValues(userId);
+
+  const options = {
+    publicKey: {
+      challenge,
+      rp: {name: 'Chrome Widget Repro', id: location.hostname},
+      user: {
+        id: userId,
+        name: 'widget-repro@example.test',
+        displayName: 'Widget Repro'
+      },
+      pubKeyCredParams: [
+        {type: 'public-key', alg: -7},
+        {type: 'public-key', alg: -257}
+      ],
+      authenticatorSelection: {
+        authenticatorAttachment: 'platform',
+        residentKey: 'required',
+        requireResidentKey: true,
+        userVerification: 'required'
+      },
+      attestation: 'none',
+      timeout: 60000
+    },
+    signal: controller.signal
+  };
+
+  const abortDelay = Number(new URLSearchParams(location.search).get('delay') || '350');
+  setTimeout(() => {
+    log('aborting request');
+    controller.abort();
+  }, abortDelay);
+
+  try {
+    log('starting navigator.credentials.create');
+    await navigator.credentials.create(options);
+    log('unexpected success');
+  } catch (error) {
+    log(`${error.name}: ${error.message}`);
+  }
+}
+
+if (new URLSearchParams(location.search).get('manual') === '1') {
+  startButton.addEventListener('click', run, {once: true});
+} else {
+  addEventListener('load', run, {once: true});
+}
+</script>

@@ -128,7 +128,7 @@ fun TokenScreen(viewModel: AppViewModel) {
         }
 
         Text(
-            "或从微信小程序「极斗」抓包获取 Authorization / fgm_token，粘贴后保存。",
+            "此处保存的用户 Token 同时用于约课和 Office；Office 管理接口需要职员权限。",
             style = MaterialTheme.typography.bodySmall,
             color = Grey3,
         )
@@ -136,7 +136,7 @@ fun TokenScreen(viewModel: AppViewModel) {
         OutlinedTextField(
             value = inputToken,
             onValueChange = { inputToken = it },
-            label = { Text("fgm_token", color = Grey2) },
+            label = { Text("用户 Token", color = Grey2) },
             modifier = Modifier.fillMaxWidth(),
             minLines = 3,
             maxLines = 6,

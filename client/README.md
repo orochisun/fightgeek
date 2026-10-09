@@ -27,7 +27,7 @@ echo '你的token' > .fgm_token
 | `book-group` | 是 | 团课预约 |
 | `cancel-group` | 是 | 团课取消 |
 | `pt-stores` | 是 | 私教门店 |
-| `pt-coaches --store-id` | 是 | 私教教练 |
+| `pt-coaches --store-id` / `--all` | 是 | 私教教练 |
 | `pt-course --store-id [--coach-id]` | 是 | 日期 + 课种 |
 | `pt-slots` | 是 | 可约时段 |
 | `pt-book` | 是 | 私教预约/预检 |
@@ -40,6 +40,9 @@ echo '你的token' > .fgm_token
 
 ```bash
 TOKEN="$(cat .fgm_token)"
+
+# 查询所有门店的教练
+python3 main.py --token "$TOKEN" pt-coaches --all
 
 # 默认 store=1101005  coach=163  course=5
 python3 main.py --token "$TOKEN" pt-course

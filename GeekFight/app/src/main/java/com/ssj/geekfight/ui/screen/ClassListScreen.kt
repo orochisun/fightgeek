@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -28,6 +29,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -63,7 +65,12 @@ import com.ssj.geekfight.viewmodel.AppViewModel
 import com.ssj.geekfight.viewmodel.toDisplayDateTime
 import com.ssj.geekfight.viewmodel.toDisplayTime
 import kotlinx.coroutines.delay
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ClassListScreen(viewModel: AppViewModel) {
     val state by viewModel.classState.collectAsState()
@@ -88,17 +95,33 @@ fun ClassListScreen(viewModel: AppViewModel) {
                 }
             }
 
-            // Store chips
+            // Store chips + refresh
             if (state.stores.isNotEmpty()) {
-                LazyRow(
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    items(state.stores) { store ->
-                        CombatChip(
-                            label = store.name.removePrefix("极斗·"),
-                            selected = state.selectedStore?.id == store.id,
-                            onClick = { viewModel.selectStore(store) },
+                    LazyRow(
+                        modifier = Modifier.weight(1f).padding(start = 12.dp, top = 2.dp, bottom = 2.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        items(state.stores) { store ->
+                            CombatChip(
+                                label = store.name.removePrefix("极斗·"),
+                                selected = state.selectedStore?.id == store.id,
+                                onClick = { viewModel.selectStore(store) },
+                            )
+                        }
+                    }
+                    IconButton(
+                        onClick = { viewModel.refreshClassList() },
+                        modifier = Modifier.size(36.dp),
+                        enabled = !state.isLoading,
+                    ) {
+                        Icon(
+                            Icons.Default.Refresh, null,
+                            tint = if (state.isLoading) Grey3.copy(alpha = 0.3f) else Grey3,
+                            modifier = Modifier.size(18.dp),
                         )
                     }
                 }
@@ -112,19 +135,32 @@ fun ClassListScreen(viewModel: AppViewModel) {
                 state.classes.isEmpty() -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text("暂无班次", color = Grey3)
                 }
-                else -> LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                    contentPadding = androidx.compose.foundation.layout.PaddingValues(
-                        horizontal = 14.dp, vertical = 10.dp,
-                    ),
-                ) {
-                    items(state.classes, key = { it.id }) { cls ->
-                        GroupClassCard(
-                            cls = cls,
-                            onBook = { viewModel.requestBookGroupClass(cls) },
-                            onCancel = { viewModel.cancelGroupClassFromList(cls.id) },
-                        )
+                else -> {
+                    val zone = ZoneId.systemDefault()
+                    val today = LocalDate.now(zone)
+                    val grouped = state.classes.groupBy { cls ->
+                        Instant.ofEpochSecond(cls.startTime).atZone(zone).toLocalDate()
+                    }.entries.sortedBy { it.key }
+
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = androidx.compose.foundation.layout.PaddingValues(
+                            horizontal = 14.dp, vertical = 10.dp,
+                        ),
+                    ) {
+                        grouped.forEach { (date, classes) ->
+                            stickyHeader(key = date.toString()) {
+                                DateHeader(date = date, today = today)
+                            }
+                            items(classes, key = { it.id }) { cls ->
+                                GroupClassCard(
+                                    cls = cls,
+                                    onBook = { viewModel.requestBookGroupClass(cls) },
+                                    onCancel = { viewModel.cancelGroupClassFromList(cls.id) },
+                                )
+                                Spacer(Modifier.height(10.dp))
+                            }
+                        }
                     }
                 }
             }
@@ -169,6 +205,32 @@ internal fun ErrorView(message: String, onRetry: () -> Unit) {
                 Text("重试")
             }
         }
+    }
+}
+
+private val dateFmt = DateTimeFormatter.ofPattern("M月d日 E")
+
+@Composable
+private fun DateHeader(date: LocalDate, today: LocalDate) {
+    val label = when (date) {
+        today            -> "今天  ${date.format(dateFmt)}"
+        today.plusDays(1) -> "明天  ${date.format(dateFmt)}"
+        else              -> date.format(dateFmt)
+    }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xCC000000))
+            .padding(horizontal = 2.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Box(modifier = Modifier.width(3.dp).height(16.dp).background(Red))
+        Text(
+            label,
+            style = MaterialTheme.typography.labelLarge,
+            color = Red,
+        )
     }
 }
 
@@ -242,11 +304,15 @@ private fun GroupClassCard(cls: GroupClass, onBook: () -> Unit, onCancel: () -> 
                             style = MaterialTheme.typography.bodySmall,
                             color = Grey2,
                         )
-                        cls.coach?.let {
+                        if (cls.coaches.isNotEmpty()) {
                             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 2.dp)) {
                                 Icon(Icons.Default.Person, null, Modifier.size(12.dp), tint = Grey3)
                                 Spacer(Modifier.width(3.dp))
-                                Text(it.name, style = MaterialTheme.typography.bodySmall, color = Grey3)
+                                Text(
+                                    cls.coaches.joinToString(" / ") { it.name },
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = Grey3,
+                                )
                             }
                         }
                     }

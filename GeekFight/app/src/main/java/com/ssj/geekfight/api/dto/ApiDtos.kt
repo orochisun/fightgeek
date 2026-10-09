@@ -53,6 +53,8 @@ data class GroupClassDto(
     /** 0 = not booked, 1 = booked */
     val myBooking: Int = 0,
     val coach: CoachDto? = null,
+    val sndCoach: CoachDto? = null,
+    val thdCoach: CoachDto? = null,
     val storeName: String? = null,
 )
 

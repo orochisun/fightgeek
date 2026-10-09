@@ -27,7 +27,7 @@ data class GroupClass(
     val duration: Int,
     val storeId: Int,
     val storeName: String,
-    val coach: Coach?,
+    val coaches: List<Coach>,
     val capacity: Int,
     val bookingNum: Int,
     val customerType: Int,
@@ -57,6 +57,19 @@ data class MemberCard(
     val id: Int,
     val name: String,
     val balance: Int,
+)
+
+data class CoachScheduleEntry(
+    val time: String,
+    val courseName: String,
+    val storeName: String,
+    val storeId: Int,
+    val startEpoch: Long,
+)
+
+data class CoachScheduleDay(
+    val date: String,
+    val entries: List<CoachScheduleEntry>,
 )
 
 data class BookingRecord(

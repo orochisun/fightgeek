@@ -93,13 +93,15 @@ def _build_parser() -> argparse.ArgumentParser:
     sub.add_parser("pt-stores", help="[登录] 支持私教的门店列表")
 
     p = sub.add_parser("pt-coaches", help="[登录] 门店私教教练列表")
-    p.add_argument(
+    store_args = p.add_mutually_exclusive_group()
+    store_args.add_argument(
         "--store-id",
         type=int,
         default=DEFAULT_STORE_ID,
         metavar="ID",
         help=f"门店 ID（默认 {DEFAULT_STORE_ID}）",
     )
+    store_args.add_argument("--all", action="store_true", help="所有支持私教的门店")
 
     p = sub.add_parser("pt-course", help="[登录] 私教可约日期与课种 courseList")
     p.add_argument(
@@ -246,7 +248,7 @@ def _run(args: argparse.Namespace) -> int:
     elif args.cmd == "pt-stores":
         _print(api.get_pt_stores())
     elif args.cmd == "pt-coaches":
-        _print(api.get_pt_coaches(args.store_id))
+        _print(api.get_all_pt_coaches() if args.all else api.get_pt_coaches(args.store_id))
     elif args.cmd == "pt-course":
         _print(api.get_pt_course(args.store_id, coach_id=args.coach_id))
     elif args.cmd == "pt-slots":

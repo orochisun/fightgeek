@@ -1,0 +1,20 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Chrome Focus Close App</title>
+<input id="focus-target" autofocus value="focus-close">
+<script>
+  let closed = false;
+  function closeOnce(source) {
+    if (closed) {
+      return;
+    }
+    closed = true;
+    console.log("close-on-focus", source);
+    window.close();
+  }
+
+  window.addEventListener("focus", () => closeOnce("window-focus"));
+  document.getElementById("focus-target").addEventListener("focus", () => {
+    closeOnce("input-focus");
+  });
+</script>

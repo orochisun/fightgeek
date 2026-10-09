@@ -10,8 +10,11 @@ import com.ssj.geekfight.api.BookingApi
 import com.ssj.geekfight.api.BookingRecord
 import com.ssj.geekfight.api.BookingRecordType
 import com.ssj.geekfight.api.BookingStatus
+import com.ssj.geekfight.api.ClassListCache
 import com.ssj.geekfight.api.Coach
+import com.ssj.geekfight.api.CoachScheduleDay
 import com.ssj.geekfight.api.FightGeekClient
+import com.ssj.geekfight.api.PtStatsCache
 import com.ssj.geekfight.api.GroupClass
 import com.ssj.geekfight.api.IdType
 import com.ssj.geekfight.api.MemberCard
@@ -64,6 +67,8 @@ data class PtState(
     val availableCards: List<MemberCard> = emptyList(),
     val message: UiMessage? = null,
     val error: String? = null,
+    val coachSchedule: List<CoachScheduleDay> = emptyList(),
+    val isLoadingSchedule: Boolean = false,
 )
 
 // ── Records State ─────────────────────────────────────────────────────────────
@@ -79,6 +84,38 @@ data class RecordsState(
     val error: String? = null,
 )
 
+// ── PT Stats State ────────────────────────────────────────────────────────────
+
+data class PtStatsDayResult(
+    val date: String,
+    val bookedCount: Int,
+    val totalSlots: Int,
+    val groupClassCount: Int = 0,
+    val availableCount: Int = 0,
+    val fromCache: Boolean,
+)
+
+data class CoachRankEntry(
+    val coachId: Int,
+    val coachName: String,
+    val bookedCount: Int,
+    val daysWithData: Int,
+)
+
+data class PtStatsState(
+    val coachId: Int? = null,
+    val coachName: String = "",
+    val startDate: java.time.LocalDate = java.time.LocalDate.now().minusDays(6),
+    val endDate: java.time.LocalDate = java.time.LocalDate.now(),
+    val isLoading: Boolean = false,
+    val results: List<PtStatsDayResult> = emptyList(),
+    val error: String? = null,
+    val isBulkFetching: Boolean = false,
+    val bulkFetchProgress: String = "",
+    val isLoadingRanking: Boolean = false,
+    val rankingResults: List<CoachRankEntry> = emptyList(),
+)
+
 // ── Token State ───────────────────────────────────────────────────────────────
 
 data class TokenState(
@@ -92,7 +129,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     val tokenManager = TokenManager(application)
 
     private val client = FightGeekClient { tokenManager.getToken() }
-    private val api = BookingApi(client)
+    private val api = BookingApi(client, application)
 
     // ── Token ─────────────────────────────────────────────────────────────────
 
@@ -167,16 +204,21 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun selectStore(store: Store) {
+    fun selectStore(store: Store, forceRefresh: Boolean = false) {
         viewModelScope.launch {
             _classState.update { it.copy(isLoading = true, error = null, selectedStore = store) }
             try {
-                val classes = withContext(Dispatchers.IO) { api.getClassList(store.id) }
+                val classes = withContext(Dispatchers.IO) { api.getClassList(store.id, forceRefresh) }
                 _classState.update { it.copy(isLoading = false, classes = classes) }
             } catch (e: Exception) {
                 _classState.update { it.copy(isLoading = false, error = e.toUserMessage()) }
             }
         }
+    }
+
+    fun refreshClassList() {
+        val store = _classState.value.selectedStore ?: return
+        selectStore(store, forceRefresh = true)
     }
 
     fun requestBookGroupClass(groupClass: GroupClass) {
@@ -255,24 +297,67 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     fun initPt() {
         if (_ptState.value.availableDates.isNotEmpty()) return
-        _ptState.update { it.copy(availableDates = buildAvailableDates()) }
+        val defaultCoach = com.ssj.geekfight.api.CoachEntry(163, "U")
+        _ptState.update {
+            it.copy(
+                availableDates = buildAvailableDates(),
+                coachId = defaultCoach.id,
+                coachName = defaultCoach.name,
+                coachQuery = "${defaultCoach.name} (${defaultCoach.id})",
+            )
+        }
     }
 
     fun setPtCoachQuery(value: String) {
         _ptState.update { it.copy(coachQuery = value) }
     }
 
+    private val scheduleCache = mutableMapOf<Int, List<CoachScheduleDay>>()
+
     fun selectPtCoach(entry: com.ssj.geekfight.api.CoachEntry) {
+        val cached = scheduleCache[entry.id]
         _ptState.update {
             it.copy(
                 coachId = entry.id,
                 coachName = entry.name,
                 coachQuery = "${entry.name} (${entry.id})",
                 slots = emptyList(),
+                coachSchedule = cached ?: emptyList(),
                 error = null,
             )
         }
         loadPtSlots()
+    }
+
+    fun loadCoachSchedule() {
+        val coachId = _ptState.value.coachId ?: return
+        loadCoachSchedule(coachId, forceRefresh = false)
+    }
+
+    fun refreshCoachSchedule() {
+        val coachId = _ptState.value.coachId ?: return
+        scheduleCache.remove(coachId)
+        loadCoachSchedule(coachId, forceRefresh = true)
+    }
+
+    private fun loadCoachSchedule(coachId: Int, forceRefresh: Boolean = false, showLoading: Boolean = true) {
+        val inMemory = scheduleCache[coachId]
+        if (!forceRefresh && inMemory != null) {
+            _ptState.update { it.copy(coachSchedule = inMemory) }
+            return
+        }
+        viewModelScope.launch {
+            if (showLoading) _ptState.update { it.copy(isLoadingSchedule = true) }
+            try {
+                val schedule = withContext(Dispatchers.IO) {
+                    api.getCoachSchedule(coachId, forceRefresh = forceRefresh)
+                }
+                scheduleCache[coachId] = schedule
+                _ptState.update { it.copy(isLoadingSchedule = false, coachSchedule = schedule) }
+            } catch (_: Exception) {
+                _ptState.update { it.copy(isLoadingSchedule = false) }
+            }
+        }
     }
 
     fun confirmPtCoachId() {
@@ -314,6 +399,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 _ptState.update { it.copy(isLoading = false, error = e.toUserMessage()) }
             }
+        }
+        // Auto-load schedule silently for denominator deduction (no loading indicator)
+        if (scheduleCache[coachId] == null) {
+            loadCoachSchedule(coachId, forceRefresh = false, showLoading = false)
         }
     }
 
@@ -409,6 +498,194 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     fun dismissQrCode() = _recordsState.update { it.copy(qrCodeTarget = null, qrCodeBase64 = null) }
     fun clearRecordsMessage() = _recordsState.update { it.copy(message = null) }
+
+    // ── PT Stats ──────────────────────────────────────────────────────────────
+
+    private val _ptStatsState = MutableStateFlow(PtStatsState())
+    val ptStatsState: StateFlow<PtStatsState> = _ptStatsState.asStateFlow()
+
+    fun selectStatsCoach(entry: com.ssj.geekfight.api.CoachEntry) {
+        _ptStatsState.update { it.copy(coachId = entry.id, coachName = entry.name, results = emptyList()) }
+    }
+
+    fun setStatsStartDate(date: java.time.LocalDate) {
+        _ptStatsState.update { it.copy(startDate = date, results = emptyList()) }
+    }
+
+    fun setStatsEndDate(date: java.time.LocalDate) {
+        _ptStatsState.update { it.copy(endDate = date, results = emptyList()) }
+    }
+
+    /**
+     * Build a map of (coachId -> set of hours with group class) for a specific date,
+     * using ClassListCache across all known stores.
+     * Returns empty set if no class list is cached.
+     */
+    private fun groupClassHoursForCoach(
+        ctx: android.content.Context,
+        coachId: Int,
+        date: java.time.LocalDate,
+    ): Set<Int> {
+        val zone = java.time.ZoneId.systemDefault()
+        val hours = mutableSetOf<Int>()
+        // Use all store IDs that have class list cache files
+        val storeIds = ctx.cacheDir.listFiles { f -> f.name.startsWith("classlist_") }
+            ?.mapNotNull { f -> f.nameWithoutExtension.removePrefix("classlist_").toIntOrNull() }
+            ?: return hours
+        for (storeId in storeIds) {
+            val classes = ClassListCache.load(ctx, storeId) ?: continue
+            classes.filter { cls ->
+                cls.coaches.any { it.id == coachId } &&
+                    java.time.Instant.ofEpochSecond(cls.startTime).atZone(zone).toLocalDate() == date
+            }.forEach { cls ->
+                hours += java.time.Instant.ofEpochSecond(cls.startTime).atZone(zone).hour
+            }
+        }
+        return hours
+    }
+
+    fun clearPtStatsCache() {
+        val ctx = getApplication<android.app.Application>()
+        PtStatsCache.clearAll(ctx)
+        _ptStatsState.update { it.copy(results = emptyList(), rankingResults = emptyList()) }
+    }
+
+    fun computeRanking() {
+        val from = _ptStatsState.value.startDate
+        val to = _ptStatsState.value.endDate
+        viewModelScope.launch {
+            _ptStatsState.update { it.copy(isLoadingRanking = true, rankingResults = emptyList()) }
+            val ctx = getApplication<android.app.Application>()
+            val ranking = withContext(Dispatchers.IO) {
+                com.ssj.geekfight.api.COACH_LIST.map { coach ->
+                    val dayData = PtStatsCache.getRange(ctx, coach.id, from, to)
+                    val booked = dayData.entries.sumOf { (dateStr, entry) ->
+                        val date = java.time.LocalDate.parse(dateStr)
+                        val gcHours = groupClassHoursForCoach(ctx, coach.id, date)
+                        entry.slots.count { !it.available && slotHour(it.timeStr) !in gcHours }
+                    }
+                    CoachRankEntry(coach.id, coach.name, booked, dayData.size)
+                }.sortedByDescending { it.bookedCount }
+            }
+            _ptStatsState.update { it.copy(isLoadingRanking = false, rankingResults = ranking) }
+        }
+    }
+
+    fun fetchAllCoachesPt() {
+        val from = _ptStatsState.value.startDate
+        val to = _ptStatsState.value.endDate
+        val today = java.time.LocalDate.now()
+        val zone = java.time.ZoneId.systemDefault()
+        val coaches = com.ssj.geekfight.api.COACH_LIST
+
+        viewModelScope.launch {
+            _ptStatsState.update { it.copy(isBulkFetching = true, bulkFetchProgress = "加载课表…") }
+            val ctx = getApplication<android.app.Application>()
+            withContext(Dispatchers.IO) {
+                // Ensure class list cache is populated first
+                try {
+                    val allStores = api.getAllStores()
+                    for (store in allStores) {
+                        if (ClassListCache.load(ctx, store.id) == null) {
+                            api.getClassList(store.id)
+                        }
+                    }
+                } catch (_: Exception) {}
+            }
+            withContext(Dispatchers.IO) {
+                coaches.forEachIndexed { idx, coach ->
+                    _ptStatsState.update {
+                        it.copy(bulkFetchProgress = "${coach.name} (${idx + 1}/${coaches.size})")
+                    }
+                    var d = if (from.isBefore(today)) today else from
+                    while (!d.isAfter(to)) {
+                        val epochDate = d.atStartOfDay(zone).toEpochSecond()
+                        try {
+                            val slots = api.getPtBookingList(PT_DEFAULT_COURSE_ID, PT_DEFAULT_STORE_ID, epochDate, coach.id)
+                            val records = slots.map { com.ssj.geekfight.api.PtSlotRecord(it.timeStr, it.available) }
+                            PtStatsCache.update(ctx, coach.id, d, records)
+                        } catch (_: Exception) {}
+                        d = d.plusDays(1)
+                    }
+                }
+            }
+            _ptStatsState.update { it.copy(isBulkFetching = false, bulkFetchProgress = "") }
+        }
+    }
+
+    fun runPtStats() {
+        val state = _ptStatsState.value
+        val coachId = state.coachId ?: return
+        val from = state.startDate
+        val to = state.endDate
+        if (from.isAfter(to)) return
+
+        viewModelScope.launch {
+            _ptStatsState.update { it.copy(isLoading = true, error = null, results = emptyList()) }
+            try {
+                val today = java.time.LocalDate.now()
+                val zone = java.time.ZoneId.systemDefault()
+
+                val ctx = getApplication<android.app.Application>()
+
+                // Ensure class list cache is populated for accurate group class detection
+                withContext(Dispatchers.IO) {
+                    try {
+                        val allStores = api.getAllStores()
+                        for (store in allStores) {
+                            if (ClassListCache.load(ctx, store.id) == null) {
+                                api.getClassList(store.id)
+                            }
+                        }
+                    } catch (_: Exception) {}
+                }
+
+                // For today and future dates in range: fetch from API and persist to stats cache
+                withContext(Dispatchers.IO) {
+                    var d = if (from.isBefore(today)) today else from
+                    while (!d.isAfter(to)) {
+                        val epochDate = d.atStartOfDay(zone).toEpochSecond()
+                        try {
+                            val slots = api.getPtBookingList(PT_DEFAULT_COURSE_ID, PT_DEFAULT_STORE_ID, epochDate, coachId)
+                            val records = slots.map { com.ssj.geekfight.api.PtSlotRecord(it.timeStr, it.available) }
+                            PtStatsCache.update(ctx, coachId, d, records)
+                        } catch (_: Exception) {}
+                        d = d.plusDays(1)
+                    }
+                }
+
+                // Read aggregated results from cache
+                val dayFmt = java.time.format.DateTimeFormatter.ofPattern("M月d日 EEE", java.util.Locale.CHINESE)
+                val results = withContext(Dispatchers.IO) {
+                    val cached = PtStatsCache.getRange(ctx, coachId, from, to)
+                    var d = from
+                    val list = mutableListOf<PtStatsDayResult>()
+                    while (!d.isAfter(to)) {
+                        val entry = cached[d.toString()]
+                        if (entry != null) {
+                            val gcHours = groupClassHoursForCoach(ctx, coachId, d)
+                            val groupClassCount = entry.slots.count { slotHour(it.timeStr) in gcHours }
+                            val bookedPt = entry.slots.count { !it.available && slotHour(it.timeStr) !in gcHours }
+                            val availableCount = entry.slots.count { it.available && slotHour(it.timeStr) !in gcHours }
+                            list.add(PtStatsDayResult(
+                                date = d.format(dayFmt),
+                                bookedCount = bookedPt,
+                                totalSlots = entry.slots.size,
+                                groupClassCount = groupClassCount,
+                                availableCount = availableCount,
+                                fromCache = d.isBefore(today),
+                            ))
+                        }
+                        d = d.plusDays(1)
+                    }
+                    list
+                }
+                _ptStatsState.update { it.copy(isLoading = false, results = results) }
+            } catch (e: Exception) {
+                _ptStatsState.update { it.copy(isLoading = false, error = e.toUserMessage()) }
+            }
+        }
+    }
 }
 
 // ── Constants & helpers ───────────────────────────────────────────────────────
@@ -416,18 +693,29 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 const val PT_DEFAULT_STORE_ID = 1101005
 const val PT_DEFAULT_COURSE_ID = 5
 
+private val DOW_CN = mapOf(
+    java.time.DayOfWeek.MONDAY    to "周一",
+    java.time.DayOfWeek.TUESDAY   to "周二",
+    java.time.DayOfWeek.WEDNESDAY to "周三",
+    java.time.DayOfWeek.THURSDAY  to "周四",
+    java.time.DayOfWeek.FRIDAY    to "周五",
+    java.time.DayOfWeek.SATURDAY  to "周六",
+    java.time.DayOfWeek.SUNDAY    to "周日",
+)
+
 fun buildAvailableDates(days: Int = 14): List<AvailableDate> {
     val zone = ZoneId.systemDefault()
-    return (1..days).map { offset ->
+    return (0 until days).map { offset ->
         val date = java.time.LocalDate.now().plusDays(offset.toLong())
         val ts = date.atStartOfDay(zone).toEpochSecond()
-        AvailableDate(date = ts, displayDate = "${date.monthValue}/${date.dayOfMonth}")
+        val dow = DOW_CN[date.dayOfWeek] ?: ""
+        AvailableDate(date = ts, displayDate = "${date.monthValue}/${date.dayOfMonth} $dow")
     }
 }
 
 // ── Formatting helpers ────────────────────────────────────────────────────────
 
-private val dtFormatter = DateTimeFormatter.ofPattern("MM-dd HH:mm")
+private val dtFormatter = DateTimeFormatter.ofPattern("MM-dd EEE HH:mm", java.util.Locale.CHINESE)
 private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
 fun Long.toDisplayDateTime(): String =
@@ -435,6 +723,9 @@ fun Long.toDisplayDateTime(): String =
 
 fun Long.toDisplayTime(): String =
     Instant.ofEpochSecond(this).atZone(ZoneId.systemDefault()).format(timeFormatter)
+
+private fun slotHour(timeStr: String): Int =
+    Regex("""(\d{1,2}):""").find(timeStr)?.groupValues?.get(1)?.toIntOrNull() ?: -1
 
 private fun Exception.toUserMessage(): String = when (this) {
     is ApiException -> message ?: "请求失败"
