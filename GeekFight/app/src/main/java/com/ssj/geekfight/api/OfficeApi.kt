@@ -54,6 +54,7 @@ object OfficeCatalog {
         OfficeEndpoint("member-analysis", "会员状态统计", "management", "GET", "/member/analysis", listOf("status", "storeId", "staffId", "queryType")),
         OfficeEndpoint("store-performance", "店面指标", "management", "GET", "/staff/performance", listOf("storeId", "type", "startTime")),
         OfficeEndpoint("store-performance-status", "店面指标状态", "management", "GET", "/staff/performance/status", listOf("storeId", "type", "startTime", "endTime")),
+        OfficeEndpoint("class-bookings", "团课预约名单", "management", "GET", "/class/booking", emptyList()),
     )
 
     val stores = linkedMapOf(
@@ -183,6 +184,27 @@ class OfficeApi {
             }
         }
         return OfficeResult(200, if (rawJson) jsonWeeks.toString(2) else text.toString().trimEnd())
+    }
+
+    fun groupClasses(token: String, storeId: Int, selectedWeek: LocalDate): JSONObject {
+        require(storeId > 0) { "门店 ID 必须为正整数" }
+        val monday = selectedWeek.minusDays((selectedWeek.dayOfWeek.value - 1).toLong())
+        // /class/list 返回 date 所在周的下一周课程，故查询目标周需传上一周周一。
+        val requestMonday = monday.minusWeeks(1)
+        return checkedJson(
+            OfficeEndpoint("group-classes", "团课列表", "management", "GET", "/class/list", listOf("storeId", "date")),
+            token, mapOf("storeId" to storeId.toString(), "date" to requestMonday.atStartOfDay(OFFICE_TIME_ZONE).toEpochSecond().toString()),
+        )
+    }
+
+    fun classBookings(token: String, classId: Int, pageSize: Int, lastId: Int): JSONObject {
+        require(classId > 0 && pageSize > 0 && lastId >= 0) { "团课 ID、请求条数必须为正整数，分页游标不能为负数" }
+        return checkedJson(
+            OfficeEndpoint("class-bookings", "团课预约名单", "management", "GET", "/class/booking",
+                listOf("queryType", "queryValue", "status", "lastId", "pageSize", "startTime", "endTime")),
+            token, mapOf("queryType" to "4", "queryValue" to classId.toString(), "status" to "0",
+                "lastId" to lastId.toString(), "pageSize" to pageSize.toString(), "startTime" to "0", "endTime" to "0"),
+        )
     }
 
     private fun checkedJson(endpoint: OfficeEndpoint, token: String, values: Map<String, String>): JSONObject {

@@ -25,6 +25,20 @@ python3 office/coach_schedule.py --json
 
 如果服务器返回的不是 JSON，脚本会在错误信息中打印 HTTP 状态码和完整响应正文。
 
+## 团课预约名单
+
+[class_bookings.py](class_bookings.py) 按团课场次 ID 查询预约用户，沿用本地 `office/.office_token`，也可通过 `FG_OFFICE_TOKEN` 或 `--token-file` 指定 Token。
+
+```bash
+python3 office/class_bookings.py 42960
+python3 office/class_bookings.py 42960 --json
+python3 office/class_bookings.py 42960 --all
+```
+
+请求为 `GET /fg/management/v1/class/booking`，参数 `queryType=4`、`queryValue=<classId>`、`status=0`、`lastId=0`、`pageSize=100`、`startTime=0`、`endTime=0`。`classId` 是具体团课场次的 ID，不是课程种类 `courseId`。默认展示姓名、用户 ID、状态、预约时间及记录 ID，并按小程序页面逻辑排除 `role=2` 和已取消（`status=4`）记录；`--all` 展示全部返回记录，`--json` 输出完整原始响应。分页可通过 `--page-size` 和 `--last-id` 控制。非 JSON 响应会打印 HTTP 状态码和完整正文。
+
+场次 ID 可通过 `GET /fg/management/v1/class/list?storeId=...&date=...` 获取。2026-10-10 实测，该接口返回 `date` 所在周的下一周课程：查询 2026-10-05 至 2026-10-11，应传 2026-09-28 周一零点（北京时间）的 Unix 秒。App 的“起始日期”默认今天，自动计算这个请求日期，并仅显示从起始日期到所在周周日的课程；教练课表 `/coach/classtable` 不使用这一偏移。
+
 ## 报表与统计接口
 
 [report_api.py](report_api.py) 提供 [Office 报表接口文档](../reverse/wxa0c17fdfe0665b9e/docs/REPORT_API.md) 中的 16 个查询与报表地址接口：10 个报表/分析接口和 6 个相关统计接口。每个接口是一个子命令；执行 `python3 office/report_api.py --help` 可查看全部命令，执行 `python3 office/report_api.py <子命令> --help` 可查看所需参数。`--env`、`--token-file` 和 `--timeout` 这类全局选项放在子命令前。

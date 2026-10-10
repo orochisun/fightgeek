@@ -132,6 +132,10 @@ fun OfficeScreen(viewModel: AppViewModel) {
         Text("${endpoint.method} ${endpoint.displayPath}", color = Grey3,
             fontFamily = FontFamily.Monospace, fontSize = 11.sp)
 
+        if (endpoint.key == "class-bookings") {
+            OfficeClassBookings(api, tokenState.token)
+        } else {
+
         if (endpoint.key == "coach-schedule") {
             OutlinedTextField(
                 value = scheduleWeek,
@@ -278,6 +282,7 @@ fun OfficeScreen(viewModel: AppViewModel) {
                     lineHeight = 18.sp,
                 )
             }
+        }
         }
     }
 }

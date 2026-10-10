@@ -41,6 +41,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ssj.geekfight.api.GroupClass
 import com.ssj.geekfight.api.MemberCard
+import com.ssj.geekfight.api.OfficeApi
 import com.ssj.geekfight.ui.theme.Border
 import com.ssj.geekfight.ui.theme.Green
 import com.ssj.geekfight.ui.theme.GreenGlow
@@ -74,6 +76,8 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun ClassListScreen(viewModel: AppViewModel) {
     val state by viewModel.classState.collectAsState()
+    val tokenState by viewModel.tokenState.collectAsState()
+    val officeApi = remember { OfficeApi() }
     LaunchedEffect(Unit) { viewModel.initClassList() }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -157,6 +161,8 @@ fun ClassListScreen(viewModel: AppViewModel) {
                                     cls = cls,
                                     onBook = { viewModel.requestBookGroupClass(cls) },
                                     onCancel = { viewModel.cancelGroupClassFromList(cls.id) },
+                                    token = tokenState.token,
+                                    officeApi = officeApi,
                                 )
                                 Spacer(Modifier.height(10.dp))
                             }
@@ -258,7 +264,13 @@ private fun CombatChip(label: String, selected: Boolean, onClick: () -> Unit) {
 }
 
 @Composable
-private fun GroupClassCard(cls: GroupClass, onBook: () -> Unit, onCancel: () -> Unit) {
+private fun GroupClassCard(
+    cls: GroupClass,
+    onBook: () -> Unit,
+    onCancel: () -> Unit,
+    token: String,
+    officeApi: OfficeApi,
+) {
     val isFull   = cls.bookingNum >= cls.capacity
     val isBooked = cls.myBooking == 1
     val fill     = if (cls.capacity > 0) cls.bookingNum.toFloat() / cls.capacity else 0f
@@ -359,6 +371,7 @@ private fun GroupClassCard(cls: GroupClass, onBook: () -> Unit, onCancel: () -> 
                     color = accent,
                     trackColor = Surface3,
                 )
+                GroupBookingPeople(classId = cls.id, capacity = cls.capacity, token = token, api = officeApi)
             }
         }
     }
